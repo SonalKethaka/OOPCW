@@ -1,0 +1,63 @@
+
+
+  <form [formGroup]="configForm" (ngSubmit)="onSubmit()" class="container mt-4">
+    <div class="form-group">
+      <label for="totalTickets">Total Tickets</label>
+      <input
+        type="number"
+        id="totalTickets"
+        formControlName="totalTickets"
+        class="form-control"
+        placeholder="Enter total tickets"
+      />
+      <div *ngIf="configForm.get('totalTickets')?.invalid && configForm.get('totalTickets')?.touched" class="text-danger">
+        Invalid Input
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="ticketReleaseRate">Ticket Release Rate</label>
+      <input
+        type="number"
+        id="ticketReleaseRate"
+        formControlName="ticketReleaseRate"
+        class="form-control"
+        placeholder="Enter ticket release rate"
+      />
+      <div *ngIf="configForm.get('ticketReleaseRate')?.invalid && configForm.get('ticketReleaseRate')?.touched" class="text-danger">
+        Invalid Input
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="customerRetrievalRate">Customer Retrieval Rate</label>
+      <input
+        type="number"
+        id="customerRetrievalRate"
+        formControlName="customerRetrievalRate"
+        class="form-control"
+        placeholder="Enter customer retrieval rate"
+      />
+      <div *ngIf="configForm.get('customerRetrievalRate')?.invalid && configForm.get('customerRetrievalRate')?.touched" class="text-danger">
+        Invalid Input
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="maxTicketCapacity">Maximum Ticket Capacity</label>
+      <input
+        type="number"
+        id="maxTicketCapacity"
+        formControlName="maxTicketCapacity"
+        class="form-control"
+        placeholder="Enter max ticket capacity"
+      />
+      <div *ngIf="configForm.get('maxTicketCapacity')?.invalid && configForm.get('maxTicketCapacity')?.touched" class="text-danger">
+        Invalid Input
+      </div>
+    </div>
+  
+    <button type="submit" class="btn btn-primary" [disabled]="configForm.invalid">
+      Save
+    </button>
+  </form>
