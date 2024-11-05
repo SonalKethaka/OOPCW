@@ -1,4 +1,4 @@
-
+<!-- 
 
   <form [formGroup]="configForm" (ngSubmit)="onSubmit()" class="container mt-4">
     <div class="form-group">
@@ -58,6 +58,154 @@
     </div>
   
     <button type="submit" class="btn btn-primary" [disabled]="configForm.invalid">
+      Save
+    </button>
+  </form> -->
+
+
+
+
+  <!-- <form #addForm="ngForm" (ngSubmit)="onAddConfiguration(addForm)" class="container mt-4">
+    <div class="form-group">
+      <label for="totalTickets">Total Tickets</label>
+      <input
+        type="number"
+        ngModel
+        id="totalTickets"
+        formControlName="totalTickets"
+        class="form-control"
+        placeholder="Enter total tickets"
+      />
+      <div *ngIf="addForm.controls['totalTickets']?.invalid && addForm.controls['totalTickets']?.touched" class="text-danger">
+        Invalid Input
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="ticketReleaseRate">Ticket Release Rate</label>
+      <input
+        type="number"
+        ngModel
+        id="ticketReleaseRate"
+        formControlName="ticketReleaseRate"
+        class="form-control"
+        placeholder="Enter ticket release rate"
+      />
+      <div *ngIf="addForm.controls['ticketReleaseRate']?.invalid && addForm.controls['ticketReleaseRate']?.touched" class="text-danger">
+        Invalid Input
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="customerRetrievalRate">Customer Retrieval Rate</label>
+      <input
+        type="number"
+        ngModel
+        id="customerRetrievalRate"
+        formControlName="customerRetrievalRate"
+        class="form-control"
+        placeholder="Enter customer retrieval rate"
+      />
+      <div *ngIf="addForm.controls['customerRetrievalRate']?.invalid && addForm.controls['customerRetrievalRate']?.touched" class="text-danger">
+        Invalid Input
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="maxTicketCapacity">Maximum Ticket Capacity</label>
+      <input
+        type="number"
+        ngModel
+        id="maxTicketCapacity"
+        formControlName="maxTicketCapacity"
+        class="form-control"
+        placeholder="Enter max ticket capacity"
+      />
+      <div *ngIf="addForm.controls['maxTicketCapacity']?.invalid && addForm.controls['maxTicketCapacity']?.touched" class="text-danger">
+        Invalid Input
+      </div>
+    </div>
+  
+    <button type="submit" id="add-configuration-form" class="btn btn-primary" [disabled]="addForm.invalid">
+      Save
+    </button>
+  </form> -->
+
+
+  <form #addForm="ngForm" (ngSubmit)="onAddConfiguration(addForm)" class="container mt-4">
+    <div class="form-group">
+      <label for="totalTickets">Total Tickets</label>
+      <input
+        type="number"
+        ngModel
+        name="totalTickets"
+        id="totalTickets"
+        class="form-control"
+        placeholder="Enter total tickets"
+        required
+        min="1"
+      />
+      <div *ngIf="addForm.controls['totalTickets']?.invalid && addForm.controls['totalTickets']?.touched" class="text-danger">
+        <span *ngIf="addForm.controls['totalTickets']?.errors?.['required']">Total Tickets is required.</span>
+        <span *ngIf="addForm.controls['totalTickets']?.errors?.['min']">Total Tickets must be greater than 0.</span>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="ticketReleaseRate">Ticket Release Rate</label>
+      <input
+        type="number"
+        ngModel
+        name="ticketReleaseRate"
+        id="ticketReleaseRate"
+        class="form-control"
+        placeholder="Enter ticket release rate"
+        required
+        min="1"
+      />
+      <div *ngIf="addForm.controls['ticketReleaseRate']?.invalid && addForm.controls['ticketReleaseRate']?.touched" class="text-danger">
+        <span *ngIf="addForm.controls['ticketReleaseRate']?.errors?.['required']">Ticket Release Rate is required.</span>
+        <span *ngIf="addForm.controls['ticketReleaseRate']?.errors?.['min']">Ticket Release Rate must be greater than 0.</span>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="customerRetrievalRate">Customer Retrieval Rate</label>
+      <input
+        type="number"
+        ngModel
+        name="customerRetrievalRate"
+        id="customerRetrievalRate"
+        class="form-control"
+        placeholder="Enter customer retrieval rate"
+        required
+        min="1"
+      />
+      <div *ngIf="addForm.controls['customerRetrievalRate']?.invalid && addForm.controls['customerRetrievalRate']?.touched" class="text-danger">
+        <span *ngIf="addForm.controls['customerRetrievalRate']?.errors?.['required']">Customer Retrieval Rate is required.</span>
+        <span *ngIf="addForm.controls['customerRetrievalRate']?.errors?.['min']">Customer Retrieval Rate must be greater than 0.</span>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="maxTicketCapacity">Maximum Ticket Capacity</label>
+      <input
+        type="number"
+        ngModel
+        name="maxTicketCapacity"
+        id="maxTicketCapacity"
+        class="form-control"
+        placeholder="Enter max ticket capacity"
+        required
+        min="1"
+      />
+      <div *ngIf="addForm.controls['maxTicketCapacity']?.invalid && addForm.controls['maxTicketCapacity']?.touched" class="text-danger">
+        <span *ngIf="addForm.controls['maxTicketCapacity']?.errors?.['required']">Max Ticket Capacity is required.</span>
+        <span *ngIf="addForm.controls['maxTicketCapacity']?.errors?.['min']">Max Ticket Capacity must be greater than 0.</span>
+      </div>
+    </div>
+  
+    <button type="submit" id="add-configuration-form" class="btn btn-primary" [disabled]="addForm.invalid">
       Save
     </button>
   </form>

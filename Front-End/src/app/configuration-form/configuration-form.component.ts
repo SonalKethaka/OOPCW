@@ -1,35 +1,61 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ConfigurationService } from '../configuration.service';
+import { Configuration } from '../configuration';
+
 @Component({
   selector: 'app-configuration-form',
   standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FormsModule
   ],
   templateUrl: './configuration-form.component.html',
   styleUrl: './configuration-form.component.css'
 })
 export class ConfigurationFormComponent {
-  configForm: FormGroup;
+  // configForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) {
-    this.configForm = this.formBuilder.group({
-      totalTickets: [0, [Validators.required, Validators.min(1)]],
-      ticketReleaseRate: [0, [Validators.required, Validators.min(1)]],
-      customerRetrievalRate: [0, [Validators.required, Validators.min(1)]],
-      maxTicketCapacity: [0, [Validators.required, Validators.min(1)]]
-    });
-  }
+  // constructor(private formBuilder: FormBuilder, private http: HttpClient) {
+  //   this.configForm = this.formBuilder.group({
+  //     totalTickets: [0, [Validators.required, Validators.min(1)]],
+  //     ticketReleaseRate: [0, [Validators.required, Validators.min(1)]],
+  //     customerRetrievalRate: [0, [Validators.required, Validators.min(1)]],
+  //     maxTicketCapacity: [0, [Validators.required, Validators.min(1)]]
+  //   });
+  // }
 
-  onSubmit() {
-    if (this.configForm.valid) {
-      this.http.post('/api/config', this.configForm.value)
-        .subscribe(response => console.log('Configuration saved', response));
-    } else {
-      console.log('Form is invalid');
-    }
+  // onSubmit() {
+  //   if (this.configForm.valid) {
+  //     this.http.post(`${environment.apiBaseUrl}/api/configuration/save`, this.configForm.value, {responseType: 'text'})
+  //       .subscribe(response => console.log('Configuration saved', response));
+  //       this.configForm.reset();
+  //   } else {
+  //     console.log('Form is invalid');
+  //   }
+  // }
+
+  constructor(private configurationService: ConfigurationService) { }
+
+  public onAddConfiguration(addForm: NgForm): void{
+
+    document.getElementById('add-configuration-form')?.click();
+
+    this.configurationService.addConfiguration(addForm.value).subscribe(
+      (response: Configuration) => {
+        console.log('Configuration saved', response);
+        addForm.reset();
+      },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+          addForm.reset();
+        }
+    );
   }
+    
 }
+

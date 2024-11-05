@@ -1,15 +1,18 @@
 package com.example.Event.Ticketing.System.Configuraion;
 
 import com.google.gson.Gson;
+import org.springframework.stereotype.Service;
 
 import java.io.*;
 
-public class ConfigurationManager {
+@Service
+public class ConfigService {
     private static final String CONFIG_FILE = "config.json";
     private static final String TEXT_FILE_PATH = "config.txt";
     private static final Gson gson = new Gson();
 
-    public static void saveConfigurationAsJson(Configuration config) throws IOException {
+
+    public void saveConfigurationAsJson(Configuration config) throws IOException {
         try (FileWriter writer = new FileWriter(CONFIG_FILE)) {
             gson.toJson(config, writer);
         }
@@ -24,7 +27,7 @@ public class ConfigurationManager {
         }
     }
 
-    public static void saveConfigurationAsText(Configuration config) throws IOException {
+    public void saveConfigurationAsText(Configuration config) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(TEXT_FILE_PATH))) {
             writer.write("Total Tickets: " + config.getTotalTickets());
             writer.newLine();
