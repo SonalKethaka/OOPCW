@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class EventTicketingSystemApplication {
 
 	public static void main(String[] args) {SpringApplication.run(EventTicketingSystemApplication.class, args);}
-
+	
 //	@Override
 //	public void run(String... args) throws Exception{
 //		Scanner scanner = new Scanner(System.in);

@@ -1,9 +1,14 @@
 package com.example.Event.Ticketing.System;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class Vendor implements Runnable{
 
     private final TicketPool ticketPool;
     private final int ticketsToAdd;
+    //NOT SURE STUFF
+    private final AtomicBoolean running = new AtomicBoolean(true);
+
 
     public Vendor(TicketPool ticketPool, int ticketsToAdd) {
         this.ticketPool = ticketPool;
@@ -23,5 +28,13 @@ public class Vendor implements Runnable{
                 System.out.println("Vendor interrupted.");
             }
         }
+    }
+
+    //NOT SURE STUFF
+    public void stop() {
+        running.set(false);
+    }
+    public void start() {
+        running.set(true);
     }
 }
