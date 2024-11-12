@@ -1,6 +1,16 @@
-<div>
+<!-- <div class="container-component">
     <app-configuration-form></app-configuration-form>
-    <app-control-panel (start)="onStart()" (stop)="onStop()"></app-control-panel>
-    <app-ticket-display></app-ticket-display>
-    <app-log-display></app-log-display> 
+    <app-header-control-component></app-header-control-component>
+    <app-system-control></app-system-control>
 </div>
+     -->
+     <div class="container-component">
+        <!-- Navbar Header Control Component at the top -->
+        <app-header-control-component class="header"></app-header-control-component>
+      
+        <!-- Main content area with Configuration Form and System Control side by side -->
+        <div class="content">
+          <app-configuration-form class="configuration"></app-configuration-form>
+          <app-system-control class="system-control"></app-system-control>
+        </div>
+      </div>

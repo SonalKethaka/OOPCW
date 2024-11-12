@@ -1,0 +1,27 @@
+
+
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;           /* This centers the header horizontally */
+  margin: 10px auto;      /* Centers the element within the left and right bounds */
+  width: 80%;          /* Adjust width as needed to control the size */
+  background-color: #f8f9fa;
+  padding: 0.5rem;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  z-index: 1000;       /* Ensure it's above other content */
+  text-align: center;  /* Optional: Center-align text inside the header */
+  } 
+
+ 
+  
+  .fixed-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .fixed-header .d-flex {
+    margin-top: 0.5rem;
+  }

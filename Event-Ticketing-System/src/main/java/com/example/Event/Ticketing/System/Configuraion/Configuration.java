@@ -1,5 +1,8 @@
 package com.example.Event.Ticketing.System.Configuraion;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Configuration {
     private int totalTickets;
     private int ticketReleaseRate;

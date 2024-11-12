@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LogDisplayComponent } from './log-display.component';
+import { SystemControlComponent } from './system-control.component';
 
-describe('LogDisplayComponent', () => {
-  let component: LogDisplayComponent;
-  let fixture: ComponentFixture<LogDisplayComponent>;
+describe('SystemControlComponent', () => {
+  let component: SystemControlComponent;
+  let fixture: ComponentFixture<SystemControlComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LogDisplayComponent]
+      imports: [SystemControlComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LogDisplayComponent);
+    fixture = TestBed.createComponent(SystemControlComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

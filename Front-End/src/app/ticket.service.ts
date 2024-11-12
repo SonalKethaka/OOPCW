@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -6,26 +6,37 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TicketService {
-  private baseUrl = 'http://localhost:8080/api/ticket';
+  private baseUrl = 'http://localhost:8080/api/tickets';
 
   constructor(private http: HttpClient) {}
 
-  startSystem(config: any): Observable<any> {
-    const params = {
-      totalTickets: config.totalTickets,
-      ticketReleaseRate: config.ticketReleaseRate,
-      customerRetrievalRate: config.customerRetrievalRate,
-      numVendors: config.numVendors,
-      numCustomers: config.numCustomers,
-    };
-    return this.http.post(`${this.baseUrl}/start`, null, { params });
+  getTicketsLeft(): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/total`);
   }
 
-  stopSystem(): Observable<any> {
-    return this.http.post(`${this.baseUrl}/stop`, null);
-  }
+  // startSystem(): Observable<string> {
+  //   return this.http.post<string>(`${this.baseUrl}/start`, {});
+  // }
 
-  getTotalTickets(): Observable<number> {
-    return this.http.get<number>(`${this.baseUrl}/totalTickets`);
+  startSystem(): Observable<string> {
+    return this.http.post(`${this.baseUrl}/start`, {}, { responseType: 'text' });
+}
+
+  // stopSystem(): Observable<string> {
+  //   return this.http.post<string>(`${this.baseUrl}/stop`, {});
+  // }
+
+  stopSystem(): Observable<string> {
+    return this.http.post(`${this.baseUrl}/stop`, {}, { responseType: 'text', observe: 'body' });
+}
+
+  // getSystemStatus(): Observable<string> {
+  //   return this.http.get<string>(`${this.baseUrl}/status`);
+  // }
+  getSystemStatus(): Observable<{status: string}> {
+    return this.http.get<{ status: string }>(`${this.baseUrl}/status`, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    });
   }
+  
 }

@@ -1,45 +1,55 @@
 package com.example.Event.Ticketing.System;
 
-import java.util.concurrent.atomic.AtomicBoolean;
+import com.example.Event.Ticketing.System.Unsure.TicketService;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 
-public class Customer implements Runnable{
+public class Customer implements Runnable {
+//    private final TicketPool ticketPool;
+//    private final int customerRetrievalRate;
+//
+//    public Customer(TicketPool ticketPool, int customerRetrievalRate) {
+//        this.ticketPool = ticketPool;
+//        this.customerRetrievalRate = customerRetrievalRate;
+//    }
+//
+//    @Override
+//    public void run() {
+//        try {
+//            ticketPool.removeTicket();  // Try to buy a ticket
+//            Thread.sleep(customerRetrievalRate);  // Wait based on retrieval rate
+//        } catch (InterruptedException e) {
+//            Thread.currentThread().interrupt();
+//        }
+//    }
 
-    private TicketPool ticketPool;  //final removed
-    private int ticketsToPurchase;  //final removed
-    //NOT SURE STUFF
-    private final AtomicBoolean running = new AtomicBoolean(true);
+    private final TicketPool ticketPool;
+    private final int customerRetrievalRate;
+    private final SimpMessagingTemplate messagingTemplate;
 
 
-    public Customer(TicketPool ticketPool, int ticketsToPurchase) {
+
+    public Customer(TicketPool ticketPool, int customerRetrievalRate, SimpMessagingTemplate messagingTemplate) {
         this.ticketPool = ticketPool;
-        this.ticketsToPurchase = ticketsToPurchase;
+        this.customerRetrievalRate = customerRetrievalRate;
+        this.messagingTemplate = messagingTemplate;
+
     }
-
-    public Customer(TicketPool ticketPool) {
-        this.ticketPool = ticketPool;
-    }
-
-
 
     @Override
     public void run() {
-        for (int i = 0; i < ticketsToPurchase; i++) {
-            ticketPool.removeTicketForCustomers();
-
+        while (ticketPool.hasTicketsLeft() && !Thread.currentThread().isInterrupted()) {
+            if (!ticketPool.removeTicket(customerRetrievalRate)) {
+                break;
+            }
             try {
-                Thread.sleep(200); // Simulating delay
+                Thread.sleep(5000); // Simulate delay between purchases
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                System.out.println("Customer interrupted.");
             }
         }
-    }
+        if (!Thread.currentThread().isInterrupted())
+            messagingTemplate.convertAndSend("/topic/logs", "Customer finished buying tickets.");
 
-    //NOT SURE STUFF
-    public void stop() {
-        running.set(false);
-    }
-    public void start() {
-        running.set(true);
+        System.out.println("Customer finished buying tickets.");
     }
 }
