@@ -92,6 +92,7 @@ public class TicketController {
 //        return ResponseEntity.ok("System is already stopped");
         try {
             ticketService.stopSystem();
+            getTotalTickets();
             return ResponseEntity.ok("System stopped successfully.");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Failed to stop the system: " + e.getMessage());
@@ -114,6 +115,6 @@ public class TicketController {
 
         @GetMapping("/total")
         public int getTotalTickets () {
-            return ticketPool.getTicketsLeft().get();
+            return ticketPool.getTicketsLeft();
         }
     }

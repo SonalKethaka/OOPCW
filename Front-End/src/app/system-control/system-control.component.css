@@ -5,19 +5,33 @@
 
 
   
+
   
-  .container {
-    border: 1px solid black;
-    border-radius: 15px;
-    padding: 20px;  }
   
 .log-container { 
   width: 100%;           /* Adjust width as needed (e.g., 100% for full width) */
   max-width: 600px;      /* Optional: set max-width to limit the width */
   height: 300px;         /* Set a fixed height */
   overflow-y: auto;      /* Adds a scrollbar if messages overflow */
-  border: 1px solid #ddd; /* Optional: border for styling */
+  border: 1px solid #444; /* Optional: border for styling */
   border-radius: 5px;    /* Optional: rounded corners */
   padding: 10px;         /* Optional: padding for spacing */
-  background-color: #f8f9fa; /* Optional: background color */    overflow-y: auto;
+  /* background-color: #f8f9fa; /* Optional: background color */     
+  background-color: #000000;
+  /* color: #fff; */
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+
+  overflow-y: auto;
   }  
+
+  .log-container li {
+    margin-bottom: 5px; /* Space between log messages */
+    color: #26b42b; /* Green text, often used in terminals for normal messages */
+  }
+
+  h4 {
+    color: #000000; /* White text for the title */
+    font-family: "Arial", sans-serif;
+    margin-bottom: 15px; /* Add space between the title and the log */
+  }

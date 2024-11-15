@@ -89,7 +89,7 @@ public class TicketService {
 
 //        TicketPool ticketPool = new TicketPool(maxTicketCapacity);
 
-        TicketPool ticketPool = new TicketPool(maxTicketCapacity, totalTickets, messagingTemplate);
+        ticketPool.set(maxTicketCapacity, totalTickets, messagingTemplate);
         // Creating and starting vendor threads
 //        List<Thread> vendorThreads = new ArrayList<>();
 //        for (int i = 0; i < 5; i++) {  // Example: 5 vendors

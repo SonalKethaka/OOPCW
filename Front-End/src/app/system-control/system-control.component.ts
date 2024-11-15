@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TicketService } from '../ticket.service';
 import { NgFor } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { WebsocketService } from '../websocket.service';
+// import { NgZone } from '@angular/core';
+
 
 
 
@@ -18,17 +20,26 @@ export class SystemControlComponent implements OnInit {
   systemStatus: string = 'Stopped';
   logMessages: string[] = [];
   isRunning: boolean = false;
+  intervalId: any;
 
   constructor(private ticketService: TicketService, private webSocketService: WebsocketService) {}
 
   ngOnInit() {
     this.getTicketsLeft();
+    // this.startTicketFetching();
     this.getSystemStatus();
     this.webSocketService.connect();//temp
     this.webSocketService.getLogs().subscribe((log) => {//temp
       this.logMessages.push(log);//temp
     });
   }
+
+  // ngOnDestroy() {
+  //   if (this.intervalId) {
+  //     clearInterval(this.intervalId); // Clean up the interval when the component is destroyed
+  //   }
+  // }
+  
 
   startSystem() {
     
@@ -37,7 +48,7 @@ export class SystemControlComponent implements OnInit {
   }
   this.isRunning = true;
     
-  this.logMessages.push("System Started kjadkajsdjk");
+  this.logMessages.push("System Started Succesfully.");
   this.systemStatus = "Started";
 
 
@@ -81,11 +92,24 @@ export class SystemControlComponent implements OnInit {
     );
   }
 
+  // startTicketFetching() {
+  //   console.log("This got called.")
+  //   this.zone.runOutsideAngular(() => {
+  //     this.getTicketsLeft(); // Initial call
+  //     this.intervalId = setInterval(() => {
+  //       this.zone.run(() => this.getTicketsLeft());
+  //     }, 1000); // 10 seconds
+  //   });
+  // }
+
   getTicketsLeft() {
     console.log("Get tickets Got called");
     this.ticketService.getTicketsLeft().subscribe(
-      (data: number) => {this.ticketsLeft = data,
-      console.log(data)},
+      (data: number) => {
+        this.ticketsLeft = data,
+        console.log(this.ticketsLeft);
+      console.log(data)
+    },
 
       (error) => {
         console.error('Error fetching tickets left', error);

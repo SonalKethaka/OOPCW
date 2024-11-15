@@ -145,6 +145,7 @@
         required
         min="1"
       />
+      <p class="text-muted">Enter the total number of tickets available in the system.</p>
       <div *ngIf="addForm.controls['totalTickets']?.invalid && addForm.controls['totalTickets']?.touched" class="text-danger">
         <span *ngIf="addForm.controls['totalTickets']?.errors?.['required']">Total Tickets is required.</span>
         <span *ngIf="addForm.controls['totalTickets']?.errors?.['min']">Total Tickets must be greater than 0.</span>
@@ -163,6 +164,7 @@
         required
         min="1"
       />
+      <p class="text-muted">Specify how many tickets will be released per time interval.</p>
       <div *ngIf="addForm.controls['ticketReleaseRate']?.invalid && addForm.controls['ticketReleaseRate']?.touched" class="text-danger">
         <span *ngIf="addForm.controls['ticketReleaseRate']?.errors?.['required']">Ticket Release Rate is required.</span>
         <span *ngIf="addForm.controls['ticketReleaseRate']?.errors?.['min']">Ticket Release Rate must be greater than 0.</span>
@@ -181,6 +183,7 @@
         required
         min="1"
       />
+      <p class="text-muted">Define the rate at which customers can retrieve tickets.</p>
       <div *ngIf="addForm.controls['customerRetrievalRate']?.invalid && addForm.controls['customerRetrievalRate']?.touched" class="text-danger">
         <span *ngIf="addForm.controls['customerRetrievalRate']?.errors?.['required']">Customer Retrieval Rate is required.</span>
         <span *ngIf="addForm.controls['customerRetrievalRate']?.errors?.['min']">Customer Retrieval Rate must be greater than 0.</span>
@@ -199,6 +202,7 @@
         required
         min="1"
       />
+      <p class="text-muted">Set the maximum capacity limit for tickets in the system.(Cannot exceed total system tickets.)</p>
       <div *ngIf="addForm.controls['maxTicketCapacity']?.invalid && addForm.controls['maxTicketCapacity']?.touched" class="text-danger">
         <span *ngIf="addForm.controls['maxTicketCapacity']?.errors?.['required']">Max Ticket Capacity is required.</span>
         <span *ngIf="addForm.controls['maxTicketCapacity']?.errors?.['min']">Max Ticket Capacity must be greater than 0.</span>
