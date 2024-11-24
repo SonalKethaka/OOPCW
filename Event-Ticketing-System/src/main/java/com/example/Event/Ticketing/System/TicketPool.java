@@ -107,8 +107,8 @@ public class TicketPool {
         this.currentTicketsInPool = 0;
     }
 
-    public synchronized boolean addTickets(int ticketsToAdd) {
-        if (ticketsLeft <= 0 || currentTicketsInPool >= maxCapacity) {
+    public synchronized boolean addTickets(int ticketsToAdd, String vendorName) {
+        if (ticketsLeft <= 0 || currentTicketsInPool >= maxCapacity) {  //nimeshhhhhhhhhhhhhhhhh
             return false;
         }
 
@@ -118,8 +118,8 @@ public class TicketPool {
         currentTicketsInPool += ticketsToRelease;
         ticketsLeft -= ticketsToRelease;
 
-        messagingTemplate.convertAndSend("/topic/logs", "Vendor added " + ticketsToRelease + " tickets. Tickets in pool: " + currentTicketsInPool);
-        System.out.println("Vendor added " + ticketsToRelease + " tickets. Tickets in pool: " + currentTicketsInPool);
+        messagingTemplate.convertAndSend("/topic/logs",  "Vendor "+vendorName+" added " + ticketsToRelease + " tickets. Tickets in pool: " + currentTicketsInPool);
+        System.out.println("Vendor "+vendorName+" added " + ticketsToRelease + " tickets. Tickets in pool: " + currentTicketsInPool);
 
 
 
@@ -133,7 +133,7 @@ public class TicketPool {
         return true;
     }
 
-    public synchronized boolean removeTicket(int ticketsToRetrieve) {
+    public synchronized boolean removeTicket(int ticketsToRetrieve, String customerName) {
         while (currentTicketsInPool < ticketsToRetrieve) {
             try {
                 wait();
@@ -144,8 +144,8 @@ public class TicketPool {
         }
 
         currentTicketsInPool -= ticketsToRetrieve;
-        messagingTemplate.convertAndSend("/topic/logs", "Customer bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + currentTicketsInPool);
-        System.out.println("Customer bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + currentTicketsInPool);
+        messagingTemplate.convertAndSend("/topic/logs", "Customer" + customerName +" bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + currentTicketsInPool);
+        System.out.println("Customer" + customerName +" bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + currentTicketsInPool);
 
         notifyAll();  // Notify vendors that space is available
         return true;

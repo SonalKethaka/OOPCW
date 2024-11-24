@@ -34,18 +34,21 @@ public class Vendor implements Runnable {
     private final int ticketReleaseRate;
     private final SimpMessagingTemplate messagingTemplate;
 
+    private final String vendorName;
 
-    public Vendor(TicketPool ticketPool, int ticketReleaseRate, SimpMessagingTemplate messagingTemplate) {
+
+    public Vendor(TicketPool ticketPool, int ticketReleaseRate, SimpMessagingTemplate messagingTemplate, String vendorName) {
         this.ticketPool = ticketPool;
         this.ticketReleaseRate = ticketReleaseRate;
         this.messagingTemplate = messagingTemplate;
 
+        this.vendorName = vendorName;
     }
 
     @Override
     public void run() {
         while (ticketPool.hasTicketsLeft() && !Thread.currentThread().isInterrupted()) {
-            if (!ticketPool.addTickets(ticketReleaseRate)) {
+            if (!ticketPool.addTickets(ticketReleaseRate, vendorName)) {
                 break;
             }
             try {
@@ -55,10 +58,10 @@ public class Vendor implements Runnable {
             }
         }
         if (!Thread.currentThread().isInterrupted()){
-            messagingTemplate.convertAndSend("/topic/logs", "Vendor finished releasing tickets.");
+            messagingTemplate.convertAndSend("/topic/logs","Vendor "+vendorName+ " finished releasing tickets.");
 
         }
 
-        System.out.println("Vendor finished releasing tickets.");
+        System.out.println("Vendor "+vendorName+ " finished releasing tickets.");
     }
 }

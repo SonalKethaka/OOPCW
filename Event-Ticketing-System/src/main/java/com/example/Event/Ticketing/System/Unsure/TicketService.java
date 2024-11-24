@@ -130,7 +130,8 @@ public class TicketService {
 
 
         for (int i = 0; i < 3; i++) {  // Create 3 vendor threads
-            Thread vendorThread = new Thread(new Vendor(ticketPool, ticketReleaseRate,messagingTemplate));
+            String num = String.valueOf(i+1);
+            Thread vendorThread = new Thread(new Vendor(ticketPool, ticketReleaseRate,messagingTemplate, num));
 //            messagingTemplate.convertAndSend("/topic/logs", "Vendor " + i + " added 1 ticket to the ticketPool");
 
             vendors.add(vendorThread);
@@ -139,7 +140,9 @@ public class TicketService {
         }
 
         for (int i = 0; i < 5; i++) {  // Create 5 customer threads
-            Thread customerThread = new Thread(new Customer(ticketPool, customerRetrievalRate, messagingTemplate));
+            String num = String.valueOf(i+1);
+
+            Thread customerThread = new Thread(new Customer(ticketPool, customerRetrievalRate, messagingTemplate, num));
 //            messagingTemplate.convertAndSend("/topic/logs", "Customer " + i + " purchased 1 ticket from the ticketPool");
 
 

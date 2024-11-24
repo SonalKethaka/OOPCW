@@ -25,20 +25,22 @@ public class Customer implements Runnable {
     private final TicketPool ticketPool;
     private final int customerRetrievalRate;
     private final SimpMessagingTemplate messagingTemplate;
+    private final String customerName;
 
 
 
-    public Customer(TicketPool ticketPool, int customerRetrievalRate, SimpMessagingTemplate messagingTemplate) {
+    public Customer(TicketPool ticketPool, int customerRetrievalRate, SimpMessagingTemplate messagingTemplate, String customerName) {
         this.ticketPool = ticketPool;
         this.customerRetrievalRate = customerRetrievalRate;
         this.messagingTemplate = messagingTemplate;
 
+        this.customerName = customerName;
     }
 
     @Override
     public void run() {
         while (ticketPool.hasTicketsLeft() && !Thread.currentThread().isInterrupted()) {
-            if (!ticketPool.removeTicket(customerRetrievalRate)) {
+            if (!ticketPool.removeTicket(customerRetrievalRate, customerName)) {
                 break;
             }
             try {
@@ -48,8 +50,8 @@ public class Customer implements Runnable {
             }
         }
         if (!Thread.currentThread().isInterrupted())
-            messagingTemplate.convertAndSend("/topic/logs", "Customer finished buying tickets.");
+            messagingTemplate.convertAndSend("/topic/logs", "Customer" + customerName + " finished buying tickets.");
 
-        System.out.println("Customer finished buying tickets.");
+        System.out.println("Customer" + customerName +" finished buying tickets.");
     }
 }
