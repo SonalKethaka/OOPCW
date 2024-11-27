@@ -170,6 +170,7 @@ public class TicketService {
 //        }
 
         System.out.println("Ticket sales completed.");
+//        this.stopSystem();
     }
 
     public void stopSystem(){

@@ -144,8 +144,8 @@ public class TicketPool {
         }
 
         currentTicketsInPool -= ticketsToRetrieve;
-        messagingTemplate.convertAndSend("/topic/logs", "Customer" + customerName +" bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + currentTicketsInPool);
-        System.out.println("Customer" + customerName +" bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + currentTicketsInPool);
+        messagingTemplate.convertAndSend("/topic/logs", "Customer " + customerName +" bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + currentTicketsInPool);
+        System.out.println("Customer " + customerName +" bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + currentTicketsInPool);
 
         notifyAll();  // Notify vendors that space is available
         return true;

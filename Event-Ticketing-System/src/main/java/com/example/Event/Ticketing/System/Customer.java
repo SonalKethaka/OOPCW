@@ -50,8 +50,8 @@ public class Customer implements Runnable {
             }
         }
         if (!Thread.currentThread().isInterrupted())
-            messagingTemplate.convertAndSend("/topic/logs", "Customer" + customerName + " finished buying tickets.");
+            messagingTemplate.convertAndSend("/topic/logs", "Customer " + customerName + " finished buying tickets.");
 
-        System.out.println("Customer" + customerName +" finished buying tickets.");
+        System.out.println("Customer " + customerName +" finished buying tickets.");
     }
 }

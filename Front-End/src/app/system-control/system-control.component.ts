@@ -34,29 +34,49 @@ export class SystemControlComponent implements OnInit {
     });
   }
 
-  // ngOnDestroy() {
-  //   if (this.intervalId) {
-  //     clearInterval(this.intervalId); // Clean up the interval when the component is destroyed
-  //   }
-  // }
-  
+  ngOnDestroy() {
+    // Clean up interval when component is destroyed
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  }
+
+  startTicketUpdating() {
+    // Clear any existing intervals to avoid duplicate updates
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+
+    // Update tickets left every second
+    this.intervalId = setInterval(() => {
+      this.getTicketsLeft();
+    }, 1000);
+  }
+
+  stopTicketUpdating() {
+    // Clear the interval to stop updates
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
+  }
 
   startSystem() {
     
     if (this.isRunning) {
       return;  // If the system is already running, do nothing
-  }
-  this.isRunning = true;
+    }
+    this.isRunning = true;
     
-  this.logMessages.push("System Started Succesfully.");
-  this.systemStatus = "Started";
-
+    this.logMessages.push("System Started Succesfully.");
+    this.systemStatus = "Started";
 
 
     this.ticketService.startSystem().subscribe(
       (response) => {
         console.log(response);
-        this.getTicketsLeft();
+        // this.getTicketsLeft();
+        this.startTicketUpdating();
 
         // this.getTicketsLeft();
       },
@@ -66,9 +86,6 @@ export class SystemControlComponent implements OnInit {
       }
       
     );
-
-  
-    
   }
 
   stopSystem() {
@@ -84,23 +101,15 @@ export class SystemControlComponent implements OnInit {
     this.ticketService.stopSystem().subscribe(
       (response) => {
         console.log(response);
-        this.getTicketsLeft();
-
+        // this.getTicketsLeft();
+        this.stopTicketUpdating();
         this.logMessages.push(response);
       },
       (error) => console.error('Error stopping system', error)
     );
   }
 
-  // startTicketFetching() {
-  //   console.log("This got called.")
-  //   this.zone.runOutsideAngular(() => {
-  //     this.getTicketsLeft(); // Initial call
-  //     this.intervalId = setInterval(() => {
-  //       this.zone.run(() => this.getTicketsLeft());
-  //     }, 1000); // 10 seconds
-  //   });
-  // }
+
 
   getTicketsLeft() {
     console.log("Get tickets Got called");
@@ -118,34 +127,7 @@ export class SystemControlComponent implements OnInit {
     );
   }
 
-  // getSystemStatus() {
-  //   // this.ticketService.getSystemStatus().subscribe(
-  //   //   (status) => this.systemStatus = status,
-  //   //   (error) => console.error('Error fetching system status', error)
-  //   // );
-
-  //   this.ticketService.getSystemStatus().subscribe(
-  //   response => {
-  //     this.systemStatus = response.status;
-  //     console.log("System status:", this.systemStatus);
-  //   },
-  //   error => {
-  //     console.error("Error fetching system status", error);
-  //   }
-  // );
-  // }
-
-  // getSystemStatus() {
-  //   this.ticketService.getSystemStatus().subscribe(
-  //     response => {
-  //       console.log("Full Response Object:", response);
-  //       this.systemStatus = response.status; // This assumes response has a 'status' field
-  //     },
-  //     error => {
-  //       console.error("Error fetching system status", error);
-  //     }
-  //   );
-  // }
+  
 
   getSystemStatus() {
     console.log("getSystemStatus() called");
