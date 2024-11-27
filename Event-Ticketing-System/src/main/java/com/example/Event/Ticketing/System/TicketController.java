@@ -20,15 +20,7 @@ public class TicketController {
     private final TicketPool ticketPool;
     private final TicketService ticketService;
     private final ConfigService configService;
-
     private boolean systemRunning = false;
-
-//    public TicketController(TicketPool ticketPool, TicketService ticketService, ConfigService configService) {
-//        this.ticketPool = ticketPool;
-//        this.ticketService = ticketService;
-//        this.configService = configService;
-//    }
-
 
     @Autowired
     public TicketController(TicketService ticketService, TicketPool ticketPool, ConfigService configService) {
@@ -60,19 +52,6 @@ public class TicketController {
 
     @PostMapping("/start")
     public ResponseEntity<String> startSystem() throws IOException {
-//        if (!systemRunning) {
-//            systemRunning = true;
-////            Configuration config = ConfigService.loadConfigurationFromJson();
-////            int ticketsPerVendor = config.getTicketReleaseRate();
-////            int ticketsPerCustomer = config.getCustomerRetrievalRate();
-////
-////            ticketService.startSystem(2, 2, ticketsPerVendor, ticketsPerCustomer);  // Example values
-//            ticketService.startSystem();
-//            return ResponseEntity.ok("System started with vendors and customers");
-//        }
-//
-//        return ResponseEntity.ok("System is already running");
-
         try {
             ticketService.startSystem();
             return ResponseEntity.ok("System started successfully.");
@@ -84,12 +63,6 @@ public class TicketController {
 
     @PostMapping("/stop")
     public ResponseEntity<String> stopSystem() {
-//        if (systemRunning) {
-//            systemRunning = false;
-//            ticketService.stopSystem();
-//            return ResponseEntity.ok("System stopped");
-//        }
-//        return ResponseEntity.ok("System is already stopped");
         try {
             ticketService.stopSystem();
             getTotalTickets();
@@ -100,21 +73,16 @@ public class TicketController {
     }
 
         // Add endpoint to get system status
-//    @GetMapping("/status")
-//    public ResponseEntity<String> getSystemStatus() {
-//        return ResponseEntity.ok(systemRunning ? "Running" : "Stopped");
-//    }
-
-        @GetMapping("/status")
-        public ResponseEntity<Map<String, String>> getSystemStatus () {
-            Map<String, String> response = new HashMap<>();
-            response.put("status", systemRunning ? "Running" : "Stopped");
+    @GetMapping("/status")
+    public ResponseEntity<Map<String, String>> getSystemStatus () {
+        Map<String, String> response = new HashMap<>();
+        response.put("status", systemRunning ? "Running" : "Stopped");
 //        return ResponseEntity.ok().body(response);
-            return ResponseEntity.ok(response);
-        }
+        return ResponseEntity.ok(response);
+    }
 
-        @GetMapping("/total")
-        public int getTotalTickets () {
-            return ticketPool.getTicketsLeft();
-        }
+    @GetMapping("/total")
+    public int getTotalTickets () {
+        return ticketPool.getTicketsLeft();
+    }
     }

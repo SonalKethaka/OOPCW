@@ -12,11 +12,7 @@ import java.io.IOException;
 @RequestMapping("/api/configuration")
 public class ConfigurationController {
 
-//    @PostMapping
-//    public void saveConfiguration(@RequestBody Configuration config) throws IOException{
-//        ConfigurationManager.saveConfigurationAsJson(config);
-//    }
-//
+
 //    @GetMapping
 //    public Configuration loadConfig() throws IOException {
 //        return ConfigurationManager.loadConfigurationFromJson();

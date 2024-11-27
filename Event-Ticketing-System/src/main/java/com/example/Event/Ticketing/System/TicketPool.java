@@ -15,90 +15,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class TicketPool {
 
-//    private final int maxCapacity;
-//    private final AtomicInteger ticketsLeft;
-//    private int currentTicketsInPool;
-//    private final SimpMessagingTemplate messagingTemplate;
-//
-//
-//
-//
-//    public TicketPool(int maxCapacity, int totalTickets, SimpMessagingTemplate messagingTemplate) {
-//        this.maxCapacity = maxCapacity;
-//        this.ticketsLeft = new AtomicInteger(totalTickets);
-//        this.messagingTemplate = messagingTemplate;
-//        this.currentTicketsInPool = 0;
-//    }
-//
-//    public synchronized boolean addTickets(int ticketsToAdd) {
-//        if (ticketsLeft.get() <= 0 || currentTicketsInPool >= maxCapacity) {
-//            return false;
-//        }
-//
-//        int ticketsToRelease = Math.min(ticketsToAdd, maxCapacity - currentTicketsInPool);
-//        ticketsToRelease = Math.min(ticketsToRelease, ticketsLeft.get());
-//
-//        currentTicketsInPool += ticketsToRelease;
-//        this.ticketsLeft.addAndGet(-ticketsToRelease);
-//
-//        messagingTemplate.convertAndSend("/topic/logs", "Vendor added " + ticketsToRelease + " tickets. Tickets in pool: " + currentTicketsInPool);
-//        System.out.println("Vendor added " + ticketsToRelease + " tickets. Tickets in pool: " + currentTicketsInPool);
-//
-//
-//
-////        try {
-////            Thread.sleep(1000);  // Adjust time as needed
-////        } catch (InterruptedException e) {
-////            Thread.currentThread().interrupt();
-////        }
-//
-//        notifyAll();  // Notify customers that tickets are available
-//        return true;
-//    }
-//
-//    public synchronized boolean removeTicket(int ticketsToRetrieve) {
-//        while (currentTicketsInPool < ticketsToRetrieve) {
-//            try {
-//                wait();
-//            } catch (InterruptedException e) {
-//                Thread.currentThread().interrupt();
-//                return false;
-//            }
-//        }
-//
-//        currentTicketsInPool -= ticketsToRetrieve;
-//        messagingTemplate.convertAndSend("/topic/logs", "Customer bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + currentTicketsInPool);
-//        System.out.println("Customer bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + currentTicketsInPool);
-//
-//        notifyAll();  // Notify vendors that space is available
-//        return true;
-//    }
-//
-//    public boolean hasTicketsLeft() {
-//        return ticketsLeft.get() > 0 || currentTicketsInPool > 0;
-//    }
-//
-//    public AtomicInteger getTicketsLeft() {
-//        System.out.println(ticketsLeft);
-//        return ticketsLeft;
-//    }
-//
-//    public void reset() {
-//        // Reset the pool state, clear any remaining tickets, etc.
-//        ticketsLeft.set(0);
-//        currentTicketsInPool = 0;
-//        messagingTemplate.convertAndSend("/topic/logs", "Ticket pool has been reset.");
-//        System.out.println("Ticket pool has been reset.");
-//    }
-
-
     private int maxCapacity;
     private int ticketsLeft;
     private int currentTicketsInPool;
     private SimpMessagingTemplate messagingTemplate;
-
-
-
 
     public TicketPool(int maxCapacity, int totalTickets, SimpMessagingTemplate messagingTemplate) {
         this.maxCapacity = maxCapacity;
