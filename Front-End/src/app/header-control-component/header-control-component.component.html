@@ -1,7 +1,28 @@
-<div class="fixed-header">
+<!-- <div class="fixed-header">
     <h2 class="text-center">Ticketing System Control</h2>
     <div class="d-flex justify-content-center">
       <button class="btn btn-success mx-2" (click)="startSystem()">Start System</button>
       <button class="btn btn-danger mx-2" (click)="stopSystem()">Stop System</button>
     </div>
+</div> -->
+
+
+<div class="p-shadow-4 p-p-3 p-mt-3 p-mx-auto p-border-round p-d-flex p-flex-column p-ai-center fixed-header">
+  <h2 class="p-m-0 p-text-center">Ticketing System Control</h2>
+  <div class="p-d-flex p-jc-center p-mt-2">
+    <button 
+      pButton 
+      label="Start System" 
+      icon="pi pi-play" 
+      class="p-button-success custom-button p-mr-3" 
+      (click)="startSystem()">
+    </button>
+    <button 
+      pButton 
+      label="Stop System" 
+      icon="pi pi-stop" 
+      class="p-button-danger custom-button p-ml-3" 
+      (click)="stopSystem()">
+    </button>
+  </div>
 </div>

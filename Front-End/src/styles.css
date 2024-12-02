@@ -1,2 +1,18 @@
 @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
+
+body {
+    background: linear-gradient(135deg, #6dd5ed, #2193b0); /* Soft blue gradient */
+    background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'); /* Subtle pattern */
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-size: cover; /* Makes sure the pattern covers the entire background */
+  }

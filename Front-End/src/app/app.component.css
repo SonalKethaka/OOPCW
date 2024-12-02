@@ -54,3 +54,12 @@ app-configuration-form, app-system-control{
   border: 1px solid #000000; /* Optional: Add a border for better definition */
   box-shadow: 10px 4px 8px rgba(0, 0, 0, 0.1);
   }
+
+  body {
+    background: linear-gradient(135deg, #6dd5ed, #2193b0); /* Soft blue gradient */
+    font-family: 'Arial', sans-serif; /* Clean and modern font */
+    color: #333; /* Dark gray text for readability */
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+  }

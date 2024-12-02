@@ -63,7 +63,7 @@ public class TicketService {
 
         }
 
-        // Wait for all vendor and customer threads to finish
+//         Wait for all vendor and customer threads to finish
 //        for (Thread vendor : vendors) {  //Gehiru
 //            try {
 //                vendor.join();
@@ -81,7 +81,6 @@ public class TicketService {
 //        }
 
         System.out.println("Ticket sales completed.");
-//        this.stopSystem();
     }
 
     public void stopSystem(){

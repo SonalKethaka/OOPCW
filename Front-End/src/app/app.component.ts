@@ -10,10 +10,17 @@ import { HeaderControlComponentComponent } from './header-control-component/head
 
 
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, ConfigurationFormComponent, SystemControlComponent, HeaderControlComponentComponent],
+  imports: [CommonModule, 
+            FormsModule, 
+            RouterModule, 
+            ConfigurationFormComponent, 
+            SystemControlComponent, 
+            HeaderControlComponentComponent, 
+            ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

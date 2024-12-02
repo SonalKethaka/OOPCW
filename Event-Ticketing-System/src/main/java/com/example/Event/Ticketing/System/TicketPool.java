@@ -75,7 +75,7 @@ public class TicketPool {
         return ticketsLeft > 0 || currentTicketsInPool > 0;
     }
 
-    public synchronized int getTicketsLeft() {
+    public int getTicketsLeft() {
         System.out.println(ticketsLeft);
         return ticketsLeft;
     }

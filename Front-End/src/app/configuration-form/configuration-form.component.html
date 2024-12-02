@@ -132,6 +132,10 @@
   </form> -->
 
 
+
+
+  <!-- 2024/12/03 maha rae -->
+
   <form #addForm="ngForm" (ngSubmit)="onAddConfiguration(addForm)" class="container mt-4">
     <div class="form-group">
       <label for="totalTickets">Total Tickets</label>
@@ -209,7 +213,11 @@
       </div>
     </div>
   
+    <!-- <button type="submit" id="add-configuration-form" class="btn btn-primary" [disabled]="addForm.invalid">
+      Save
+    </button> -->
     <button type="submit" id="add-configuration-form" class="btn btn-primary" [disabled]="addForm.invalid">
+      <i class="pi pi-save" style="margin-right: 5px;"></i>
       Save
     </button>
   </form>

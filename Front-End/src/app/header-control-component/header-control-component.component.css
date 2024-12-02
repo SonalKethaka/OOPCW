@@ -4,15 +4,15 @@
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;           /* This centers the header horizontally */
-  margin: 10px auto;      /* Centers the element within the left and right bounds */
-  width: 80%;          /* Adjust width as needed to control the size */
+  right: 0;          
+  margin: 10px auto;      
+  width: 80%;         
   background-color: #f8f9fa;
   padding: 1.125rem;
   border: 1px solid #000000;
   border-radius: 10px;
-  z-index: 1000;       /* Ensure it's above other content */
-  text-align: center;  /* Optional: Center-align text inside the header */
+  z-index: 1000;       
+  text-align: center; 
   } 
 
  
@@ -25,3 +25,30 @@
   .fixed-header .d-flex {
     margin-top: 0.5rem;
   }
+
+
+  /* saddddasdajhdajhbdajhbd */
+
+   .custom-button {
+    color: rgb(255, 255, 255);
+    font-size: 1rem; /* Moderate text size */
+    padding: 0.5rem 1rem; /* Adjust padding for size */
+    border-radius: 10px; /* Curved corners */
+    width: auto; /* Dynamic width based on content */
+  }
+  
+  .fixed-header .p-d-flex .p-mr-3,
+  .fixed-header .p-d-flex .p-ml-3 {
+    margin: 0 10px; /* Add consistent spacing between buttons */
+  }
+  
+
+  body {
+    background: linear-gradient(135deg, #6dd5ed, #2193b0); /* Soft blue gradient */
+    font-family: 'Arial', sans-serif; /* Clean and modern font */
+    color: #333; /* Dark gray text for readability */
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+  }
+  

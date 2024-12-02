@@ -7,6 +7,7 @@ import { ConfigurationService } from '../configuration.service';
 import { Configuration } from '../configuration';
 import { routes } from '../app.routes';
 import { Router } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-configuration-form',
@@ -15,7 +16,7 @@ import { Router } from '@angular/router';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    
+    ButtonModule
 
   ],
   templateUrl: './configuration-form.component.html',
