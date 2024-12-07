@@ -53,7 +53,7 @@ public class TicketPool {
         return true;
     }
 
-    public synchronized boolean removeTicket(int ticketsToRetrieve, String customerName) {
+    public synchronized boolean removeTicket(int ticketsToRetrieve, String customerName, boolean isVip) {
         while (currentTicketsInPool < ticketsToRetrieve) {
             try {
                 wait();
@@ -64,8 +64,8 @@ public class TicketPool {
         }
 
         currentTicketsInPool -= ticketsToRetrieve;
-        messagingTemplate.convertAndSend("/topic/logs", "Customer " + customerName +" bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + currentTicketsInPool);
-        System.out.println(" Customer " + customerName +" bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + currentTicketsInPool);
+        messagingTemplate.convertAndSend("/topic/logs", (isVip ? "VIP" : "Regular") + " Customer " + customerName +" bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + currentTicketsInPool);
+        System.out.println((isVip ? "VIP" : "Regular") + " Customer " + customerName +" bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + currentTicketsInPool);
 
         notifyAll();  // Notify vendors that space is available
         return true;

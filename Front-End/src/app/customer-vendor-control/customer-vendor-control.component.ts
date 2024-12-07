@@ -1,25 +1,26 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { CustomerConrolService } from '../customer-conrol.service';
-
+import { CustomerVendorControlService } from '../customer-vendor-control.service';
 
 @Component({
-  selector: 'app-customer-control-component',
+  selector: 'app-customer-vendor-control',
   standalone: true,
   imports: [],
-  templateUrl: './customer-control-component.component.html',
-  styleUrl: './customer-control-component.component.css'
+  templateUrl: './customer-vendor-control.component.html',
+  styleUrl: './customer-vendor-control.component.css'
 })
-export class CustomerControlComponentComponent {
+export class CustomerVendorControlComponent {
   regularCustomerCount: number = 0;
   vipCustomerCount: number = 0;
+  vendorCount: number = 0;
   currentRegularCustomers: number = 0;
   currentVipCustomers: number = 0;
+  currentVendors: number = 0;
 
-  constructor(private customerController: CustomerConrolService) { }
+  constructor(private customerVendorService: CustomerVendorControlService) { }
 
   ngOnInit(): void {
     this.getCustomerCounts(); // Get current customer counts when the component is initialized
+    this.getVendorCounts();// Get current vendor counts when the component is initialized
   }
 
   // Increment regular customers count
@@ -50,9 +51,23 @@ export class CustomerControlComponentComponent {
     }
   }
 
+  // Increment Vendors count
+  incrementVendors() {
+    this.vendorCount++;
+    this.adjustVndors();
+  }
+
+  // Decrement Vendors count
+  decrementVendors() {
+    if (this.vendorCount > 0) {
+      this.vendorCount--;
+      this.adjustVndors();
+    }
+  }
+
   // Adjust regular customers
   adjustRegularCustomers(): void {
-    this.customerController.adjustRegularCustomers(this.regularCustomerCount)
+    this.customerVendorService.adjustRegularCustomers(this.regularCustomerCount)
       .subscribe({
         next: (response: string) => {
           console.log('Regular customers adjusted:', response);
@@ -68,7 +83,7 @@ export class CustomerControlComponentComponent {
 
   // Adjust VIP customers
   adjustVipCustomers() {
-    this.customerController.adjustVipCustomers(this.vipCustomerCount).subscribe(
+    this.customerVendorService.adjustVipCustomers(this.vipCustomerCount).subscribe(
       response => {
         console.log('VIP customers adjusted:', response);
         this.getCustomerCounts(); // Update customer counts after adjustment
@@ -79,11 +94,31 @@ export class CustomerControlComponentComponent {
     );
   }
 
+  // Adjust Vendors
+  adjustVndors() {
+    this.customerVendorService.adjustVendors(this.vendorCount).subscribe(
+      response => {
+        console.log('Vendors adjusted:', response);
+        this.getVendorCounts(); // Update customer counts after adjustment
+      },
+      error => {
+        console.error('Error adjusting Vendors:', error);
+      }
+    );
+  }
+
   // Get the current number of regular and VIP customers
   getCustomerCounts() {
-    this.customerController.getCustomerCounts().subscribe(response => {
+    this.customerVendorService.getCustomerCounts().subscribe(response => {
       this.currentRegularCustomers = response.regularCustomers;
       this.currentVipCustomers = response.vipCustomers;
+    });
+  }
+
+  // Get the current number of Vendors
+  getVendorCounts() {
+    this.customerVendorService.getVendorCounts().subscribe(response => {
+      this.currentVendors = response.regularCustomers;
     });
   }
 }

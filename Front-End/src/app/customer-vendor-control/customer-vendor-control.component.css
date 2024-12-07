@@ -1,0 +1,100 @@
+.customer-section {
+    display: flex;
+    flex-direction: row;
+    gap: 30px; /* Space between Regular Customers and VIP Customers */
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .customer-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px; /* Adjust based on your preference */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .customer-icon, .vip-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #007bff; /* Adjust icon color */
+  }
+  
+  .customer-title, .vip-title {
+    margin: 5px 0;
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+  
+  .adjust-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between buttons and count */
+    margin: 15px 0;
+  }
+  
+  .customer-count, .vip-count {
+    font-size: 1.4rem;
+    font-weight: bold;
+    min-width: 30px;
+    text-align: center;
+  }
+  
+  .p-button-rounded {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; /* Smaller size */
+    height: 30px; /* Smaller size */
+    font-size: 1rem; /* Smaller font size */
+    border-radius: 50%; /* Ensures the buttons remain circular */
+  }
+  
+  .p-button-danger {
+    background-color: #f53e50;
+    border-color: #f53e50;
+    color: #fff;
+  }
+  
+  .p-button-success {
+    background-color: hsl(134, 66%, 46%);
+    border-color: #28c44c;
+    color: #fff;
+  }
+
+  .p-button-danger:hover {
+    background-color: hsl(354, 90%, 65%) !important; /* Bright red hover effect */
+    color: white !important; /* Ensure the text color contrasts well */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    cursor: pointer;
+
+  }
+
+  .p-button-success:hover {
+    background-color: hsl(134, 66%, 52%) !important; /* Bright red hover effect */
+    color: white !important; /* Ensure the text color contrasts well */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    cursor: pointer;
+
+  }
+  
+  .mt-2 {
+    margin-top: 10px;
+  }
+  
+  .p-button-primary {
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+  }

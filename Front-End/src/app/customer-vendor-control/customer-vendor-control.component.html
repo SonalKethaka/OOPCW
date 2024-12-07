@@ -1,0 +1,104 @@
+<!-- <div class="container">
+  <h2>Customer Configuration</h2>
+
+  <div class="form-group">
+    <label for="regularCustomers">Regular Customers:</label>
+    <div class="button-group">
+      <button (click)="decrementRegularCustomers()" class="btn btn-secondary">-</button>
+      <span>{{ regularCustomerCount }}</span>
+      <button (click)="incrementRegularCustomers()" class="btn btn-secondary">+</button>
+    </div>
+    <button (click)="adjustRegularCustomers()" class="btn btn-primary mt-2">Adjust Regular Customers</button>
+  </div>
+
+  <div class="form-group">
+    <label for="vipCustomers">VIP Customers:</label>
+    <div class="button-group">
+      <button (click)="decrementVipCustomers()" class="btn btn-secondary">-</button>
+      <span>{{ vipCustomerCount }}</span>
+      <button (click)="incrementVipCustomers()" class="btn btn-secondary">+</button>
+    </div>
+    <button (click)="adjustVipCustomers()" class="btn btn-primary mt-2">Adjust VIP Customers</button>
+  </div>
+
+  <div class="mt-4">
+    <h3>Current Customer Counts:</h3>
+    <p>Regular Customers: {{ currentRegularCustomers }}</p>
+    <p>VIP Customers: {{ currentVipCustomers }}</p>
+  </div>
+</div>
+
+ -->
+
+
+ <div class="customer-section">
+    <!-- Regular Customers -->
+    <div class="customer-box">
+      <i class="pi pi-user customer-icon"></i>
+      <h6 class="customer-title">Customers</h6>
+      <div class="adjust-buttons">
+        <button 
+          (click)="decrementRegularCustomers()" 
+          class="p-button-rounded p-button-danger"
+          [disabled]="regularCustomerCount <= 0">
+          <i class="pi pi-minus"></i>
+        </button>
+        <span class="customer-count">{{ regularCustomerCount }}</span>
+        <button 
+          (click)="incrementRegularCustomers()" 
+          class="p-button-rounded p-button-success">
+          <i class="pi pi-plus"></i>
+        </button>
+      </div>
+      <!-- <button (click)="adjustRegularCustomers()" class="p-button p-button-primary mt-2">
+        Adjust Regular Customers
+      </button> -->
+    </div>
+  
+    <!-- VIP Customers -->
+    <div class="customer-box">
+      <i class="pi pi-star vip-icon"></i>
+      <h6 class="vip-title">VIP Customers ✨</h6>
+      <div class="adjust-buttons">
+        <button 
+          (click)="decrementVipCustomers()" 
+          class="p-button-rounded p-button-danger"
+          [disabled]="vipCustomerCount <= 0">
+          <i class="pi pi-minus"></i>
+        </button>
+        <span class="vip-count">{{ vipCustomerCount }}</span>
+        <button 
+          (click)="incrementVipCustomers()" 
+          class="p-button-rounded p-button-success">
+          <i class="pi pi-plus"></i>
+        </button>
+      </div>
+      <!-- <button (click)="adjustVipCustomers()" class="p-button p-button-primary mt-2">
+        Adjust VIP Customers
+      </button> -->
+    </div>
+
+
+    <!-- Vendors -->
+    <div class="customer-box">
+        <i class="pi pi-home vip-icon"></i>
+        <h6 class="vip-title">Vendors 🏠</h6>
+        <div class="adjust-buttons">
+          <button 
+            (click)="decrementVendors()" 
+            class="p-button-rounded p-button-danger"
+            [disabled]="vendorCount <= 0">
+            <i class="pi pi-minus"></i>
+          </button>
+          <span class="vip-count">{{ vendorCount }}</span>
+          <button 
+            (click)="incrementVendors()" 
+            class="p-button-rounded p-button-success">
+            <i class="pi pi-plus"></i>
+          </button>
+        </div>
+        <!-- <button (click)="adjustVndors()" class="p-button p-button-primary mt-2">
+          Adjust Vendors
+        </button> -->
+      </div>
+  </div>

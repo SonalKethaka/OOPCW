@@ -30,6 +30,8 @@ public class TicketService {
     private int totalCustomers = 0;
     private int totalVipCustomers = 0;
 
+    private int totalVendors = 0;
+
     @Autowired
     public TicketService(TicketPool ticketPool, SimpMessagingTemplate messagingTemplate) throws IOException {
         this.ticketPool = ticketPool;
@@ -47,7 +49,7 @@ public class TicketService {
         ticketPool.set(maxTicketCapacity, totalTickets, messagingTemplate);
         // Creating and starting vendor threads
 
-        for (int i = 0; i < 3; i++) {  // Create 3 vendor threads
+        for (int i = 0; i < totalVendors; i++) {  // Create 3 vendor threads
             String num = String.valueOf(i+1);
             Thread vendorThread = new Thread(new Vendor(ticketPool, ticketReleaseRate,messagingTemplate, num));
 
@@ -76,8 +78,8 @@ public class TicketService {
             customerThread.start();
         }
 
-        for (int i = totalCustomers; i <= totalCustomers + totalVipCustomers; i++) {
-            String num = String.valueOf(i );
+        for (int i = 0; i < totalVipCustomers; i++) {
+            String num = String.valueOf(i + 1 );
             Customer vipCustomer = new Customer(ticketPool, customerRetrievalRate, messagingTemplate, num, true); // VIP customer
             customerQueue.add(vipCustomer);
             Thread vipCustomerThread = new Thread(vipCustomer);
@@ -146,6 +148,13 @@ public class TicketService {
         messagingTemplate.convertAndSend("/topic/logs", (isVip ? "VIP" : "Regular") + " customer count adjusted to " + numCustomers);
     }
 
+    public void adjustVendors(int numVendors) {
+        totalVendors = numVendors;
+
+        // Adjust the queue based on the new count
+        messagingTemplate.convertAndSend("/topic/logs", "Vendor count adjusted to " + numVendors);
+    }
+
 
     public int getRegularCustomersCount() {
         return totalCustomers;
@@ -153,5 +162,9 @@ public class TicketService {
 
     public int getVipCustomersCount() {
         return totalVipCustomers;
+    }
+
+    public int getTotalVendors() {
+        return totalVendors;
     }
 }

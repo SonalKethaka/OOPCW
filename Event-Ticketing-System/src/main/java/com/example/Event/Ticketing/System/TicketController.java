@@ -115,6 +115,17 @@ public class TicketController {
         }
     }
 
+    // Adjust the number of Vendors
+    @PostMapping("/configure/vendors")
+    public ResponseEntity<String> adjustVendors(@RequestParam int numVendors) {
+        try {
+            ticketService.adjustVendors(numVendors); // true indicates VIP customers
+            return ResponseEntity.ok("Vendors count set to " + numVendors);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error adjusting Vendors: " + e.getMessage());
+        }
+    }
+
     // Endpoint to get the current number of regular and VIP customers
     @GetMapping("/customers")
     public ResponseEntity<Map<String, Integer>> getCustomerCounts() {
@@ -122,6 +133,13 @@ public class TicketController {
         customerCounts.put("regularCustomers", ticketService.getRegularCustomersCount());
         customerCounts.put("vipCustomers", ticketService.getVipCustomersCount());
         return ResponseEntity.ok(customerCounts);
+    }
+
+    @GetMapping("/vendors")
+    public ResponseEntity<Map<String, Integer>> getVendorCounts() {
+        Map<String, Integer> vendorCounts = new HashMap<>();
+        vendorCounts.put("regularCustomers", ticketService.getTotalVendors());
+        return ResponseEntity.ok(vendorCounts);
     }
 
 }

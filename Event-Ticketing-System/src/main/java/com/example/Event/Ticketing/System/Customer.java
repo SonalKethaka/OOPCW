@@ -34,7 +34,7 @@ public class Customer implements Runnable, Comparable<Customer> {
     @Override
     public void run() {
         while (ticketPool.hasTicketsLeft() && !Thread.currentThread().isInterrupted()) {
-            if (!ticketPool.removeTicket(customerRetrievalRate, customerName)) {
+            if (!ticketPool.removeTicket(customerRetrievalRate, customerName, isVip)) {
                 break;
             }
             try {
@@ -44,9 +44,9 @@ public class Customer implements Runnable, Comparable<Customer> {
             }
         }
         if (!Thread.currentThread().isInterrupted())
-            messagingTemplate.convertAndSend("/topic/logs", "Customer " + customerName + " finished buying tickets.");
+            messagingTemplate.convertAndSend("/topic/logs", (isVip ? "VIP" : "Regular")+" Customer " + customerName + " finished buying tickets.");
 
-        System.out.println("Customer " + customerName +" finished buying tickets.");
+        System.out.println((isVip ? "VIP" : "Regular") + " Customer " + customerName +" finished buying tickets.");
     }
 
     public boolean isVip() {

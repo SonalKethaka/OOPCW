@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { ConfigurationFormComponent } from "./configuration-form/configuration-form.component";
 import { SystemControlComponent } from "./system-control/system-control.component";
 import { HeaderControlComponentComponent } from './header-control-component/header-control-component.component';
-import { CustomerControlComponentComponent } from './customer-control-component/customer-control-component.component';
+import { CustomerVendorControlComponent } from './customer-vendor-control/customer-vendor-control.component';
 
 // import { ConfigurationFormComponent } from "./configuration-form/configuration-form.component";
 
@@ -22,7 +22,7 @@ import { CustomerControlComponentComponent } from './customer-control-component/
             ConfigurationFormComponent, 
             SystemControlComponent, 
             HeaderControlComponentComponent, 
-            CustomerControlComponentComponent],
+            CustomerVendorControlComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
