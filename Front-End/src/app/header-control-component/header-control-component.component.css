@@ -42,13 +42,4 @@
     margin: 0 10px; /* Add consistent spacing between buttons */
   }
   
-
-  body {
-    background: linear-gradient(135deg, #6dd5ed, #2193b0); /* Soft blue gradient */
-    font-family: 'Arial', sans-serif; /* Clean and modern font */
-    color: #333; /* Dark gray text for readability */
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-  }
   

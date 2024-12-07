@@ -21,6 +21,7 @@ app-configuration-form, app-system-control{
     flex-direction: column;
     background-color: #ededed;
     height: 100vh;
+    padding: 0 20px; /* Padding on the sides only */
 
   }
   
@@ -39,7 +40,7 @@ app-configuration-form, app-system-control{
     justify-content: space-between;
     gap: 50px; /* Adds space between the two side-by-side components */
     padding: 20px;
-    margin: 100px 100px; /* Creates space below the header to avoid overlap */
+    
   }
   
   .configuration, .system-control {
@@ -55,11 +56,14 @@ app-configuration-form, app-system-control{
   box-shadow: 10px 4px 8px rgba(0, 0, 0, 0.1);
   }
 
-  body {
-    background: linear-gradient(135deg, #6dd5ed, #2193b0); /* Soft blue gradient */
-    font-family: 'Arial', sans-serif; /* Clean and modern font */
-    color: #333; /* Dark gray text for readability */
-    margin: 0;
-    padding: 0;
-    height: 100vh;
+  
+
+  .customer-row {
+    margin: 100px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px; /* Reduced bottom margin to reduce gap */
+    padding: 10px;
+    z-index: 5; /* Ensures it's not under the header */
   }

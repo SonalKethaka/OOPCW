@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { ConfigurationFormComponent } from "./configuration-form/configuration-form.component";
 import { SystemControlComponent } from "./system-control/system-control.component";
 import { HeaderControlComponentComponent } from './header-control-component/header-control-component.component';
+import { CustomerControlComponentComponent } from './customer-control-component/customer-control-component.component';
+
 // import { ConfigurationFormComponent } from "./configuration-form/configuration-form.component";
 
 
@@ -20,7 +22,7 @@ import { HeaderControlComponentComponent } from './header-control-component/head
             ConfigurationFormComponent, 
             SystemControlComponent, 
             HeaderControlComponentComponent, 
-            ],
+            CustomerControlComponentComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

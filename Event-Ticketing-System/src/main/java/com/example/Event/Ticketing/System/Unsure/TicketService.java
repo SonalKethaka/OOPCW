@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.PriorityBlockingQueue;
 
 import static org.hibernate.internal.util.collections.ArrayHelper.forEach;
 
@@ -24,6 +25,10 @@ public class TicketService {
     List<Thread> vendors = new ArrayList<>();
     List<Thread> customers = new ArrayList<>();
     private boolean systemRunning = true;
+
+    private final PriorityBlockingQueue<Customer> customerQueue = new PriorityBlockingQueue<>();
+    private int totalCustomers = 0;
+    private int totalVipCustomers = 0;
 
     @Autowired
     public TicketService(TicketPool ticketPool, SimpMessagingTemplate messagingTemplate) throws IOException {
@@ -51,17 +56,35 @@ public class TicketService {
 //            Thread.sleep(1000);
         }
 
-        for (int i = 0; i < 5; i++) {  // Create 5 customer threads
-            String num = String.valueOf(i+1);
-
-            Thread customerThread = new Thread(new Customer(ticketPool, customerRetrievalRate, messagingTemplate, num));
-
-
+//        for (int i = 0; i < 5; i++) {  // Create 5 customer threads
+//            String num = String.valueOf(i+1);
+//
+//            Thread customerThread = new Thread(new Customer(ticketPool, customerRetrievalRate, messagingTemplate, num));
+//
+//
+//            customers.add(customerThread);
+//            customerThread.start();
+////            Thread.sleep(1000);
+//
+//        }   //CHATGPTTTTTTTTTTTTTTTTT
+        for (int i = 0; i < totalCustomers; i++) {
+            String num = String.valueOf(i + 1);
+            Customer customer = new Customer(ticketPool, customerRetrievalRate, messagingTemplate, num, false); // Regular customer
+            customerQueue.add(customer);
+            Thread customerThread = new Thread(customer);
             customers.add(customerThread);
             customerThread.start();
-//            Thread.sleep(1000);
-
         }
+
+        for (int i = totalCustomers; i <= totalCustomers + totalVipCustomers; i++) {
+            String num = String.valueOf(i );
+            Customer vipCustomer = new Customer(ticketPool, customerRetrievalRate, messagingTemplate, num, true); // VIP customer
+            customerQueue.add(vipCustomer);
+            Thread vipCustomerThread = new Thread(vipCustomer);
+            customers.add(vipCustomerThread);
+            vipCustomerThread.start();
+        }
+
 
 //         Wait for all vendor and customer threads to finish
 //        for (Thread vendor : vendors) {  //Gehiru
@@ -112,4 +135,23 @@ public class TicketService {
         return systemRunning;
     }
 
+    public void adjustCustomers(int numCustomers, boolean isVip) {
+        if (isVip) {
+            totalVipCustomers = numCustomers;
+        } else {
+            totalCustomers = numCustomers;
+        }
+
+        // Adjust the queue based on the new count
+        messagingTemplate.convertAndSend("/topic/logs", (isVip ? "VIP" : "Regular") + " customer count adjusted to " + numCustomers);
+    }
+
+
+    public int getRegularCustomersCount() {
+        return totalCustomers;
+    }
+
+    public int getVipCustomersCount() {
+        return totalVipCustomers;
+    }
 }

@@ -85,4 +85,43 @@ public class TicketController {
     public int getTotalTickets () {
         return ticketPool.getTicketsLeft();
     }
+
+
+    // Adjust the number of regular customers
+    @PostMapping("/configure/regularCustomers")
+    public ResponseEntity<Map<String, String>> adjustRegularCustomers(@RequestParam int numCustomers) {
+        try {
+            ticketService.adjustCustomers(numCustomers, false);
+            Map<String, String> response = new HashMap<>();
+            response.put("status", "success");
+            response.put("message", "Regular customers count set to " + numCustomers);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            Map<String, String> response = new HashMap<>();
+            response.put("status", "error");
+            response.put("message", "Error adjusting regular customers: " + e.getMessage());
+            return ResponseEntity.status(500).body(response);
+        }
     }
+
+    // Adjust the number of VIP customers
+    @PostMapping("/configure/vipCustomers")
+    public ResponseEntity<String> adjustVipCustomers(@RequestParam int numCustomers) {
+        try {
+            ticketService.adjustCustomers(numCustomers, true); // true indicates VIP customers
+            return ResponseEntity.ok("VIP customers count set to " + numCustomers);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error adjusting VIP customers: " + e.getMessage());
+        }
+    }
+
+    // Endpoint to get the current number of regular and VIP customers
+    @GetMapping("/customers")
+    public ResponseEntity<Map<String, Integer>> getCustomerCounts() {
+        Map<String, Integer> customerCounts = new HashMap<>();
+        customerCounts.put("regularCustomers", ticketService.getRegularCustomersCount());
+        customerCounts.put("vipCustomers", ticketService.getVipCustomersCount());
+        return ResponseEntity.ok(customerCounts);
+    }
+
+}

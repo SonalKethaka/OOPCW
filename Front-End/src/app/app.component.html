@@ -4,11 +4,27 @@
     <app-system-control></app-system-control>
 </div>
      -->
-     <div class="container-component">
+     <!-- <div class="container-component">
 
        
         <app-header-control-component class="header"></app-header-control-component>
+        
       
+        <div class="content">
+          <app-customer-control-component></app-customer-control-component>
+          <app-configuration-form class="configuration"></app-configuration-form>
+          <app-system-control class="system-control"></app-system-control>
+        </div>
+      </div> -->
+      <div class="container-component">
+        <app-header-control-component class="header"></app-header-control-component>
+      
+        <!-- Customer Control Row -->
+        <div class="customer-row">
+          <app-customer-control-component></app-customer-control-component>
+        </div>
+      
+        <!-- Side-by-Side Components -->
         <div class="content">
           <app-configuration-form class="configuration"></app-configuration-form>
           <app-system-control class="system-control"></app-system-control>
