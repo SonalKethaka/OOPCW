@@ -2,14 +2,18 @@ package com.example.Event.Ticketing.System;
 
 import com.example.Event.Ticketing.System.Configuraion.ConfigService;
 import com.example.Event.Ticketing.System.Configuraion.Configuration;
+import org.springframework.boot.logging.java.SimpleFormatter;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
 
 
 
@@ -19,12 +23,33 @@ public class TicketPool {
     private int ticketsLeft;
     private int currentTicketsInPool;
     private SimpMessagingTemplate messagingTemplate;
+    private static final Logger logger = Logger.getLogger(TicketPool.class.getName());
 
     public TicketPool(int maxCapacity, int totalTickets, SimpMessagingTemplate messagingTemplate) {
         this.maxCapacity = maxCapacity;
         this.ticketsLeft = totalTickets;
         this.messagingTemplate = messagingTemplate;
         this.currentTicketsInPool = 0;
+    }
+
+    static {
+        try {
+            // Ensure the "logs" directory exists
+            File logsDir = new File("logs");
+            if (!logsDir.exists()) {
+                logsDir.mkdir();  // Creates the directory if it does not exist
+            }
+
+            // Set up FileHandler for logging
+            FileHandler fileHandler = new FileHandler("logs/application.log", true);
+            fileHandler.setFormatter(new SimpleFormatter());
+            logger.addHandler(fileHandler);
+
+            // Disable console logging (no ConsoleHandler)
+            System.setProperty("java.util.logging.ConsoleHandler.level", "OFF");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public synchronized boolean addTickets(int ticketsToAdd, String vendorName) {
@@ -37,6 +62,8 @@ public class TicketPool {
 
         currentTicketsInPool += ticketsToRelease;
         ticketsLeft -= ticketsToRelease;
+
+        logger.info("Vendor " + vendorName + " added " + ticketsToRelease + " tickets. Tickets in pool: " + currentTicketsInPool);
 
         messagingTemplate.convertAndSend("/topic/logs",  "Vendor "+vendorName+" added " + ticketsToRelease + " tickets. Tickets in pool: " + currentTicketsInPool);
         System.out.println("Vendor "+vendorName+" added " + ticketsToRelease + " tickets. Tickets in pool: " + currentTicketsInPool);
@@ -64,6 +91,8 @@ public class TicketPool {
         }
 
         currentTicketsInPool -= ticketsToRetrieve;
+        logger.info((isVip ? "VIP" : "Regular") + " Customer " + customerName + " bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + currentTicketsInPool);
+
         messagingTemplate.convertAndSend("/topic/logs", (isVip ? "VIP" : "Regular") + " Customer " + customerName +" bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + currentTicketsInPool);
         System.out.println((isVip ? "VIP" : "Regular") + " Customer " + customerName +" bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + currentTicketsInPool);
 
