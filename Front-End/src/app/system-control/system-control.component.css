@@ -1,8 +1,22 @@
+.status-badge {
+  padding: 0 6px; /* Add padding for better spacing */
+  border-radius: 5px; /* Round the corners */
+  font-weight: bold; /* Make the text bold */
+  color: white !important; /* Text color */
+  display: inline-block; /* Ensure proper spacing and background display */
+  margin-left: 5px;
+}
 
-  
+.text-success {
+  background-color: rgb(31, 208, 31); /* Green background for 'Started' */
+}
 
-  
-  
+.text-danger {
+  background-color: red; /* Red background for 'Stopped' */
+}
+
+
+
 .log-container { 
   width: 100%;           
   max-width: 600px;     
@@ -21,7 +35,7 @@
 
   .log-container li {
     margin-bottom: 5px; 
-    color: #26b42b; 
+    color: #0fd215; 
   }
 
   h4 {

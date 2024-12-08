@@ -11,7 +11,7 @@ import { WebsocketService } from '../websocket.service';
 @Component({
   selector: 'app-system-control',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, CommonModule],
   templateUrl: './system-control.component.html',
   styleUrl: './system-control.component.css'
 })
