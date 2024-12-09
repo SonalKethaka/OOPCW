@@ -10,15 +10,18 @@ import java.io.IOException;
 @Configuration
 public class TicketPoolConfig {
     private final SimpMessagingTemplate messagingTemplate;
+    private final TicketRepository ticketRepository;
 
-    public TicketPoolConfig(SimpMessagingTemplate messagingTemplate) {
+
+    public TicketPoolConfig(SimpMessagingTemplate messagingTemplate, TicketRepository ticketRepository) {
         this.messagingTemplate = messagingTemplate;
+        this.ticketRepository = ticketRepository;
     }
 
     @Bean
     public TicketPool ticketPool() throws IOException {
         int maxTicketCapacity = 0;  // Set the desired max ticket capacity
         int totalTickets =0;
-        return new TicketPool( maxTicketCapacity, totalTickets, messagingTemplate );
+        return new TicketPool( maxTicketCapacity, totalTickets, messagingTemplate , ticketRepository);
     }
 }

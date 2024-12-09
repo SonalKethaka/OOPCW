@@ -1,11 +1,9 @@
 package com.example.Event.Ticketing.System.Unsure;
 
 
+import com.example.Event.Ticketing.System.*;
 import com.example.Event.Ticketing.System.Configuraion.ConfigService;
 import com.example.Event.Ticketing.System.Configuraion.Configuration;
-import com.example.Event.Ticketing.System.Customer;
-import com.example.Event.Ticketing.System.TicketPool;
-import com.example.Event.Ticketing.System.Vendor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
@@ -26,6 +24,8 @@ public class TicketService {
     List<Thread> customers = new ArrayList<>();
     private boolean systemRunning = true;
 
+    private final TicketRepository ticketRepository;
+
     private final PriorityBlockingQueue<Customer> customerQueue = new PriorityBlockingQueue<>();
     private int totalCustomers = 0;
     private int totalVipCustomers = 0;
@@ -33,9 +33,10 @@ public class TicketService {
     private int totalVendors = 0;
 
     @Autowired
-    public TicketService(TicketPool ticketPool, SimpMessagingTemplate messagingTemplate) throws IOException {
+    public TicketService(TicketPool ticketPool, SimpMessagingTemplate messagingTemplate, TicketRepository ticketRepository) throws IOException {
         this.ticketPool = ticketPool;
         this.messagingTemplate = messagingTemplate;
+        this.ticketRepository = ticketRepository;
     }
 
     public void startSystem() throws IOException, InterruptedException {
@@ -166,5 +167,10 @@ public class TicketService {
 
     public int getTotalVendors() {
         return totalVendors;
+    }
+
+
+    public List<Ticket> getAllTickets() {
+        return ticketRepository.findAll();
     }
 }

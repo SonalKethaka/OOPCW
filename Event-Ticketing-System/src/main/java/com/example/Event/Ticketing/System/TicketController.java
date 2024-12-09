@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @CrossOrigin(origins = {"http://localhost:4200/control", "http://localhost:4200"})
@@ -142,4 +143,8 @@ public class TicketController {
         return ResponseEntity.ok(vendorCounts);
     }
 
+    @GetMapping
+    public List<Ticket> getAllTickets() {
+        return ticketService.getAllTickets();
+    }
 }

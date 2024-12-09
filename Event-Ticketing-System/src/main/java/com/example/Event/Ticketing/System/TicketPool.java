@@ -25,11 +25,15 @@ public class TicketPool {
     private SimpMessagingTemplate messagingTemplate;
     private static final Logger logger = Logger.getLogger(TicketPool.class.getName());
 
-    public TicketPool(int maxCapacity, int totalTickets, SimpMessagingTemplate messagingTemplate) {
+    private final TicketRepository ticketRepository;
+
+    public TicketPool(int maxCapacity, int totalTickets, SimpMessagingTemplate messagingTemplate, TicketRepository ticketRepository) {
         this.maxCapacity = maxCapacity;
         this.ticketsLeft = totalTickets;
         this.messagingTemplate = messagingTemplate;
         this.currentTicketsInPool = 0;
+
+        this.ticketRepository = ticketRepository;
     }
 
     static {
@@ -63,6 +67,13 @@ public class TicketPool {
         currentTicketsInPool += ticketsToRelease;
         ticketsLeft -= ticketsToRelease;
 
+        // Save to database
+        Ticket ticket = new Ticket();
+        ticket.setVendorName(vendorName);
+        ticket.setQuantity(ticketsToRelease);
+        ticket.setOperationType("ADD");
+        ticketRepository.save(ticket);
+
         logger.info("Vendor " + vendorName + " added " + ticketsToRelease + " tickets. Tickets in pool: " + currentTicketsInPool);
 
         messagingTemplate.convertAndSend("/topic/logs",  "Vendor "+vendorName+" added " + ticketsToRelease + " tickets. Tickets in pool: " + currentTicketsInPool);
@@ -91,6 +102,15 @@ public class TicketPool {
         }
 
         currentTicketsInPool -= ticketsToRetrieve;
+
+        // Save to database
+        Ticket ticket = new Ticket();
+        ticket.setCustomerName(customerName);
+        ticket.setQuantity(ticketsToRetrieve);
+        ticket.setVip(isVip);
+        ticket.setOperationType("PURCHASE");
+        ticketRepository.save(ticket);
+
         logger.info((isVip ? "VIP" : "Regular") + " Customer " + customerName + " bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + currentTicketsInPool);
 
         messagingTemplate.convertAndSend("/topic/logs", (isVip ? "VIP" : "Regular") + " Customer " + customerName +" bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + currentTicketsInPool);
