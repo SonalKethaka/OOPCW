@@ -55,6 +55,7 @@ public class TicketController {
     public ResponseEntity<String> startSystem() throws IOException {
         try {
             ticketService.startSystem();
+            System.out.println("System started successfully.");
             return ResponseEntity.ok("System started successfully.");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Failed to start the system: " + e.getMessage());
@@ -67,6 +68,7 @@ public class TicketController {
         try {
             ticketService.stopSystem();
             getTotalTickets();
+            System.out.println("System stopped successfully.");
             return ResponseEntity.ok("System stopped successfully.");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Failed to stop the system: " + e.getMessage());
