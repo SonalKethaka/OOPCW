@@ -118,3 +118,61 @@
 [2024-12-09 22:35:37.557] - 29853 INFO [Thread-11] --- com.example.Event.Ticketing.System.TicketPool: Regular Customer 1 bought 2 ticket(s). Tickets left in pool: 0
 [2024-12-09 22:35:42.534] - 29853 INFO [Thread-10] --- com.example.Event.Ticketing.System.TicketPool: Vendor 3 added 2 tickets. Tickets in pool: 2
 [2024-12-09 22:35:42.554] - 29853 INFO [Thread-13] --- com.example.Event.Ticketing.System.TicketPool: VIP Customer 1 bought 2 ticket(s). Tickets left in pool: 0
+[2024-12-10 03:05:12.407] - 38875 INFO [Thread-12] --- com.example.Event.Ticketing.System.TicketPool: Vendor 1 added 2 tickets. Tickets in pool: 2
+[2024-12-10 03:05:12.412] - 38875 INFO [Thread-18] --- com.example.Event.Ticketing.System.TicketPool: VIP Customer 1 bought 2 ticket(s). Tickets left in pool: 0
+[2024-12-10 03:05:12.415] - 38875 INFO [Thread-15] --- com.example.Event.Ticketing.System.TicketPool: Vendor 4 added 2 tickets. Tickets in pool: 2
+[2024-12-10 03:05:12.418] - 38875 INFO [Thread-14] --- com.example.Event.Ticketing.System.TicketPool: Vendor 3 added 2 tickets. Tickets in pool: 4
+[2024-12-10 03:05:12.421] - 38875 INFO [Thread-13] --- com.example.Event.Ticketing.System.TicketPool: Vendor 2 added 2 tickets. Tickets in pool: 6
+[2024-12-10 03:05:12.422] - 38875 INFO [Thread-16] --- com.example.Event.Ticketing.System.TicketPool: Regular Customer 1 bought 2 ticket(s). Tickets left in pool: 4
+[2024-12-10 03:05:12.424] - 38875 INFO [Thread-17] --- com.example.Event.Ticketing.System.TicketPool: Regular Customer 2 bought 2 ticket(s). Tickets left in pool: 2
+[2024-12-10 03:05:17.419] - 38875 INFO [Thread-12] --- com.example.Event.Ticketing.System.TicketPool: Vendor 1 added 2 tickets. Tickets in pool: 4
+[2024-12-10 03:05:17.428] - 38875 INFO [Thread-15] --- com.example.Event.Ticketing.System.TicketPool: Vendor 4 added 2 tickets. Tickets in pool: 6
+[2024-12-10 03:05:17.438] - 38875 INFO [Thread-18] --- com.example.Event.Ticketing.System.TicketPool: VIP Customer 1 bought 2 ticket(s). Tickets left in pool: 4
+[2024-12-10 03:05:17.443] - 38875 INFO [Thread-17] --- com.example.Event.Ticketing.System.TicketPool: Regular Customer 2 bought 2 ticket(s). Tickets left in pool: 2
+[2024-12-10 03:05:17.448] - 38875 INFO [Thread-16] --- com.example.Event.Ticketing.System.TicketPool: Regular Customer 1 bought 2 ticket(s). Tickets left in pool: 0
+[2024-12-10 03:05:17.453] - 38875 INFO [Thread-13] --- com.example.Event.Ticketing.System.TicketPool: Vendor 2 added 2 tickets. Tickets in pool: 2
+[2024-12-10 03:05:17.458] - 38875 INFO [Thread-14] --- com.example.Event.Ticketing.System.TicketPool: Vendor 3 added 2 tickets. Tickets in pool: 4
+[2024-12-10 03:05:22.424] - 38875 INFO [Thread-12] --- com.example.Event.Ticketing.System.TicketPool: Vendor 1 added 2 tickets. Tickets in pool: 6
+[2024-12-10 03:05:22.435] - 38875 INFO [Thread-15] --- com.example.Event.Ticketing.System.TicketPool: Vendor 4 added 2 tickets. Tickets in pool: 8
+[2024-12-10 03:05:22.445] - 38875 INFO [Thread-18] --- com.example.Event.Ticketing.System.TicketPool: VIP Customer 1 bought 2 ticket(s). Tickets left in pool: 6
+[2024-12-10 03:05:22.448] - 38875 INFO [Thread-17] --- com.example.Event.Ticketing.System.TicketPool: Regular Customer 2 bought 2 ticket(s). Tickets left in pool: 4
+[2024-12-10 03:05:22.457] - 38875 INFO [Thread-16] --- com.example.Event.Ticketing.System.TicketPool: Regular Customer 1 bought 2 ticket(s). Tickets left in pool: 2
+[2024-12-10 03:05:27.456] - 38875 INFO [Thread-18] --- com.example.Event.Ticketing.System.TicketPool: VIP Customer 1 bought 2 ticket(s). Tickets left in pool: 0
+[2024-12-10 14:56:32.741] - 47851 INFO [Thread-8] --- com.example.Event.Ticketing.System.TicketPool: Vendor 1 added 2 tickets. Tickets in pool: 2
+[2024-12-10 14:56:32.747] - 47851 INFO [Thread-13] --- com.example.Event.Ticketing.System.TicketPool: VIP Customer 1 bought 2 ticket(s). Tickets left in pool: 0
+[2024-12-10 14:56:32.750] - 47851 INFO [Thread-10] --- com.example.Event.Ticketing.System.TicketPool: Vendor 3 added 2 tickets. Tickets in pool: 2
+[2024-12-10 14:56:32.753] - 47851 INFO [Thread-9] --- com.example.Event.Ticketing.System.TicketPool: Vendor 2 added 2 tickets. Tickets in pool: 4
+[2024-12-10 14:56:32.762] - 47851 INFO [Thread-11] --- com.example.Event.Ticketing.System.TicketPool: Regular Customer 1 bought 2 ticket(s). Tickets left in pool: 2
+[2024-12-10 14:56:32.765] - 47851 INFO [Thread-12] --- com.example.Event.Ticketing.System.TicketPool: Regular Customer 2 bought 2 ticket(s). Tickets left in pool: 0
+[2024-12-10 14:56:37.757] - 47851 INFO [Thread-8] --- com.example.Event.Ticketing.System.TicketPool: Vendor 1 added 2 tickets. Tickets in pool: 2
+[2024-12-10 14:56:37.772] - 47851 INFO [Thread-9] --- com.example.Event.Ticketing.System.TicketPool: Vendor 2 added 2 tickets. Tickets in pool: 4
+[2024-12-10 14:56:37.779] - 47851 INFO [Thread-10] --- com.example.Event.Ticketing.System.TicketPool: Vendor 3 added 2 tickets. Tickets in pool: 6
+[2024-12-10 14:56:37.787] - 47851 INFO [Thread-13] --- com.example.Event.Ticketing.System.TicketPool: VIP Customer 1 bought 2 ticket(s). Tickets left in pool: 4
+[2024-12-10 14:56:37.792] - 47851 INFO [Thread-12] --- com.example.Event.Ticketing.System.TicketPool: Regular Customer 2 bought 2 ticket(s). Tickets left in pool: 2
+[2024-12-10 14:56:37.796] - 47851 INFO [Thread-11] --- com.example.Event.Ticketing.System.TicketPool: Regular Customer 1 bought 2 ticket(s). Tickets left in pool: 0
+[2024-12-10 14:56:42.769] - 47851 INFO [Thread-8] --- com.example.Event.Ticketing.System.TicketPool: Vendor 1 added 2 tickets. Tickets in pool: 2
+[2024-12-10 14:56:42.781] - 47851 INFO [Thread-9] --- com.example.Event.Ticketing.System.TicketPool: Vendor 2 added 2 tickets. Tickets in pool: 4
+[2024-12-10 14:56:42.789] - 47851 INFO [Thread-10] --- com.example.Event.Ticketing.System.TicketPool: Vendor 3 added 2 tickets. Tickets in pool: 6
+[2024-12-10 14:56:42.796] - 47851 INFO [Thread-13] --- com.example.Event.Ticketing.System.TicketPool: VIP Customer 1 bought 2 ticket(s). Tickets left in pool: 4
+[2024-12-10 14:56:42.800] - 47851 INFO [Thread-12] --- com.example.Event.Ticketing.System.TicketPool: Regular Customer 2 bought 2 ticket(s). Tickets left in pool: 2
+[2024-12-10 14:56:42.804] - 47851 INFO [Thread-11] --- com.example.Event.Ticketing.System.TicketPool: Regular Customer 1 bought 2 ticket(s). Tickets left in pool: 0
+[2024-12-10 14:56:47.781] - 47851 INFO [Thread-8] --- com.example.Event.Ticketing.System.TicketPool: Vendor 1 added 2 tickets. Tickets in pool: 2
+[2024-12-10 14:56:47.802] - 47851 INFO [Thread-13] --- com.example.Event.Ticketing.System.TicketPool: VIP Customer 1 bought 2 ticket(s). Tickets left in pool: 0
+[2024-12-10 16:09:56.019] - 49690 INFO [Thread-8] --- com.example.Event.Ticketing.System.TicketPool: Vendor 1 added 2 tickets. Tickets in pool: 2
+[2024-12-10 16:09:56.025] - 49690 INFO [Thread-13] --- com.example.Event.Ticketing.System.TicketPool: VIP Customer 1 bought 2 ticket(s). Tickets left in pool: 0
+[2024-12-10 16:09:56.028] - 49690 INFO [Thread-10] --- com.example.Event.Ticketing.System.TicketPool: Vendor 3 added 2 tickets. Tickets in pool: 2
+[2024-12-10 16:09:56.033] - 49690 INFO [Thread-9] --- com.example.Event.Ticketing.System.TicketPool: Vendor 2 added 2 tickets. Tickets in pool: 4
+[2024-12-10 16:09:56.036] - 49690 INFO [Thread-11] --- com.example.Event.Ticketing.System.TicketPool: Regular Customer 1 bought 2 ticket(s). Tickets left in pool: 2
+[2024-12-10 16:09:56.039] - 49690 INFO [Thread-12] --- com.example.Event.Ticketing.System.TicketPool: Regular Customer 2 bought 2 ticket(s). Tickets left in pool: 0
+[2024-12-10 16:10:01.037] - 49690 INFO [Thread-8] --- com.example.Event.Ticketing.System.TicketPool: Vendor 1 added 2 tickets. Tickets in pool: 2
+[2024-12-10 16:10:01.051] - 49690 INFO [Thread-9] --- com.example.Event.Ticketing.System.TicketPool: Vendor 2 added 2 tickets. Tickets in pool: 4
+[2024-12-10 16:10:01.055] - 49690 INFO [Thread-10] --- com.example.Event.Ticketing.System.TicketPool: Vendor 3 added 2 tickets. Tickets in pool: 6
+[2024-12-10 16:10:01.060] - 49690 INFO [Thread-13] --- com.example.Event.Ticketing.System.TicketPool: VIP Customer 1 bought 2 ticket(s). Tickets left in pool: 4
+[2024-12-10 16:10:01.067] - 49690 INFO [Thread-12] --- com.example.Event.Ticketing.System.TicketPool: Regular Customer 2 bought 2 ticket(s). Tickets left in pool: 2
+[2024-12-10 16:10:01.071] - 49690 INFO [Thread-11] --- com.example.Event.Ticketing.System.TicketPool: Regular Customer 1 bought 2 ticket(s). Tickets left in pool: 0
+[2024-12-10 16:10:06.053] - 49690 INFO [Thread-8] --- com.example.Event.Ticketing.System.TicketPool: Vendor 1 added 2 tickets. Tickets in pool: 2
+[2024-12-10 16:10:06.068] - 49690 INFO [Thread-9] --- com.example.Event.Ticketing.System.TicketPool: Vendor 2 added 2 tickets. Tickets in pool: 4
+[2024-12-10 16:10:06.081] - 49690 INFO [Thread-13] --- com.example.Event.Ticketing.System.TicketPool: VIP Customer 1 bought 2 ticket(s). Tickets left in pool: 2
+[2024-12-10 16:10:06.086] - 49690 INFO [Thread-10] --- com.example.Event.Ticketing.System.TicketPool: Vendor 3 added 2 tickets. Tickets in pool: 4
+[2024-12-10 16:10:06.089] - 49690 INFO [Thread-11] --- com.example.Event.Ticketing.System.TicketPool: Regular Customer 1 bought 2 ticket(s). Tickets left in pool: 2
+[2024-12-10 16:10:06.092] - 49690 INFO [Thread-12] --- com.example.Event.Ticketing.System.TicketPool: Regular Customer 2 bought 2 ticket(s). Tickets left in pool: 0
