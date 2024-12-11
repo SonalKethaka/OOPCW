@@ -3,6 +3,7 @@ package com.example.Event.Ticketing.System;
 
 
 import com.example.Event.Ticketing.System.Configuraion.ConfigService;
+import com.example.Event.Ticketing.System.Configuraion.Configuration;
 import com.example.Event.Ticketing.System.Unsure.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -87,6 +88,12 @@ public class TicketController {
     @GetMapping("/total")
     public int getTotalTickets () {
         return ticketPool.getTicketsLeft();
+    }
+
+    @GetMapping("/totalTickets")
+    public int getStartedTotalTickets () throws IOException {
+        Configuration config = ConfigService.loadConfigurationFromJson();
+        return config.getTotalTickets();
     }
 
 

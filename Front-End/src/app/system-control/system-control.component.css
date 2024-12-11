@@ -43,3 +43,20 @@
     font-family: "Arial", sans-serif;
     margin-bottom: 15px; 
   }
+
+  /* Custom Progress Bar */
+.custom-progress-bar {
+  height: 11px; /* Set the thickness of the progress bar */
+  background-color: #f1f1f1; /* Background for the bar container */
+  border-radius: 4px; /* Optional: Rounded corners */
+  overflow: hidden;
+}
+
+.custom-progress-bar-fill {
+  height: 100%; /* Ensure the fill covers the full height */
+  background-color: #3ed23b; /* Blue color for the bar */
+  transition: width 0.5s ease-in-out; /* Smooth transition for changes in width */
+  font-size: 10px; /* Adjust font size to fit the thinner bar */
+  color: white; /* Text color inside the bar */
+  line-height: 8px; /* Align text vertically */
+}

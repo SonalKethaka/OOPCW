@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<!-- <div class="container mt-4">
     
     <div class="card p-4">
       <h3>Total Tickets Left: <span class="text-info">{{ ticketsLeft }}</span></h3>
@@ -19,4 +19,36 @@
     </div>
   </div>
   
- 
+  -->
+  <div class="container mt-4">
+    <div class="card p-4">
+      <h3>Total Tickets Left: <span class="text-info">{{ ticketsLeft }}</span></h3>
+      <p class="mt-2"><strong>🕹️ System Status:</strong> 
+        <span
+          class="status-badge"
+          [ngClass]="{ 'text-success': systemStatus === 'Started', 'text-danger': systemStatus === 'Stopped' }">
+          • {{ systemStatus }}
+        </span>
+      </p>
+  
+      <!-- Custom Progress Bar -->
+      <div class="progress mt-4 custom-progress-bar">
+        <div
+          class="progress-bar custom-progress-bar-fill"
+          [style.width]="calculateLineWidth() + '%'"
+          role="progressbar"
+          [attr.aria-valuenow]="calculateLineWidth()"
+          aria-valuemin="0"
+          aria-valuemax="100">
+          {{ calculateLineWidth() | number:'1.0-0' }}%
+        </div>
+      </div>
+  
+      <div class="mt-4">
+        <h4>Log</h4>
+        <ul class="list-group log-container">
+          <li class="list-group-item" *ngFor="let message of logMessages">{{ message }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>

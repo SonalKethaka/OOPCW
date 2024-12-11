@@ -14,6 +14,10 @@ export class TicketService {
     return this.http.get<number>(`${this.baseUrl}/total`);
   }
 
+  getStartedTicketsLeft(): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/totalTickets`);
+  }
+
   // startSystem(): Observable<string> {
   //   return this.http.post<string>(`${this.baseUrl}/start`, {});
   // }

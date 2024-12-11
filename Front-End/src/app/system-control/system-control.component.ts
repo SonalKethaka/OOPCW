@@ -16,7 +16,10 @@ import { WebsocketService } from '../websocket.service';
   styleUrl: './system-control.component.css'
 })
 export class SystemControlComponent implements OnInit {
-  ticketsLeft: number | undefined;
+  ticketsLeft: number = 10;
+
+  maxTickets: number = 10;
+
   systemStatus: string = 'Stopped';
   logMessages: string[] = [];
   isRunning: boolean = false;
@@ -24,9 +27,20 @@ export class SystemControlComponent implements OnInit {
 
   constructor(private ticketService: TicketService, private webSocketService: WebsocketService) {}
 
+  // Method to calculate the width of the line
+  calculateLineWidth(): number {
+    if (this.maxTickets === 0) {
+      return 0; // Avoid division by zero
+    }
+    return (this.ticketsLeft / this.maxTickets) * 100;
+  }
+
   ngOnInit() {
     this.getTicketsLeft();
     // this.startTicketFetching();
+
+    this.getStartedTicketsLeft();
+
     this.getSystemStatus();
     this.webSocketService.connect();//temp
     this.webSocketService.getLogs().subscribe((log) => {//temp
@@ -122,6 +136,19 @@ export class SystemControlComponent implements OnInit {
 
       (error) => {
         console.error('Error fetching tickets left', error);
+      this.isRunning = true;}
+
+    );
+  }
+  getStartedTicketsLeft() {
+    this.ticketService.getStartedTicketsLeft().subscribe(
+      (data: number) => {
+        this.maxTickets = data,
+      console.log(data)
+    },
+
+      (error) => {
+        console.error('Error fetching started total tickets', error);
       this.isRunning = true;}
 
     );
