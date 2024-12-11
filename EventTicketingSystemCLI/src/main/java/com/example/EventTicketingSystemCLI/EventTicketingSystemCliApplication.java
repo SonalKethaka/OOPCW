@@ -68,7 +68,7 @@ public class EventTicketingSystemCliApplication implements Runnable {
 
 			//Not Sure about below code lines!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-			TicketPool ticketPool = new TicketPool(configuration.getMaxTicketCapacity(), configuration.getMaxTicketCapacity());
+			TicketPool ticketPool = new TicketPool(configuration.getMaxTicketCapacity(), configuration.getTotalTickets() );
 
 			// Start vendors
 			List<Thread> vendorThreads = new ArrayList<>();

@@ -99,36 +99,77 @@ public class TicketPool {
     }
 
     public synchronized boolean removeTicket(int ticketsToRetrieve, String customerName, boolean isVip) {
-        while (ticketPool.size() < ticketsToRetrieve) {
+//        while (ticketPool.size() < ticketsToRetrieve) {
+//            try {
+//                wait();
+//            } catch (InterruptedException e) {
+//                Thread.currentThread().interrupt();
+//                return false;
+//            }
+//        }
+//
+////        currentTicketsInPool -= ticketsToRetrieve;
+//
+//        // Remove the requested number of tickets
+//        for (int i = 0; i < ticketsToRetrieve; i++) {
+//            ticketPool.remove(0);  // Each "remove" simulates purchasing a ticket
+//        }
+//
+//        // Save to database
+//        Ticket ticket = new Ticket();
+//        ticket.setCustomerName(customerName);
+//        ticket.setQuantity(ticketsToRetrieve);
+//        ticket.setVip(isVip);
+//        ticket.setOperationType("PURCHASE");
+//        ticketRepository.save(ticket);
+//
+//        logger.info((isVip ? "VIP" : "Regular") + " Customer " + customerName + " bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + ticketPool.size());
+//
+//        messagingTemplate.convertAndSend("/topic/logs", (isVip ? "VIP" : "Regular") + " Customer " + customerName +" bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + ticketPool.size());
+//        System.out.println((isVip ? "VIP" : "Regular") + " Customer " + customerName +" bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + ticketPool.size());
+//
+//        notifyAll();  // Notify vendors that space is available
+//        return true;
+
+
+
+        //BEFORE THE LAST DAY
+
+        while (ticketPool.isEmpty()) { // Wait if the ticket pool is empty
             try {
-                wait();
+                System.out.println("Waiting for tickets to become available...");
+                messagingTemplate.convertAndSend("/topic/logs", "Waiting for tickets to become available...");
+
+                wait(); // Wait until tickets are added to the pool
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 return false;
             }
         }
 
-//        currentTicketsInPool -= ticketsToRetrieve;
+        // Determine how many tickets can be retrieved
+        int ticketsToRemove = Math.min(ticketsToRetrieve, ticketPool.size());
 
-        // Remove the requested number of tickets
-        for (int i = 0; i < ticketsToRetrieve; i++) {
-            ticketPool.remove(0);  // Each "remove" simulates purchasing a ticket
+        // Remove the tickets from the pool
+        for (int i = 0; i < ticketsToRemove; i++) {
+            ticketPool.remove(0); // Simulate ticket purchase by removing from the pool
         }
 
-        // Save to database
+        // Save the ticket transaction to the database
         Ticket ticket = new Ticket();
         ticket.setCustomerName(customerName);
-        ticket.setQuantity(ticketsToRetrieve);
+        ticket.setQuantity(ticketsToRemove); // Save the actual number of tickets removed
         ticket.setVip(isVip);
         ticket.setOperationType("PURCHASE");
         ticketRepository.save(ticket);
 
-        logger.info((isVip ? "VIP" : "Regular") + " Customer " + customerName + " bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + ticketPool.size());
+        // Log the transaction
+        logger.info((isVip ? "VIP" : "Regular") + " Customer " + customerName + " bought " + ticketsToRemove + " ticket(s). Tickets left in pool: " + ticketPool.size());
+        messagingTemplate.convertAndSend("/topic/logs", (isVip ? "VIP" : "Regular") + " Customer " + customerName + " bought " + ticketsToRemove + " ticket(s). Tickets left in pool: " + ticketPool.size());
+        System.out.println((isVip ? "VIP" : "Regular") + " Customer " + customerName + " bought " + ticketsToRemove + " ticket(s). Tickets left in pool: " + ticketPool.size());
 
-        messagingTemplate.convertAndSend("/topic/logs", (isVip ? "VIP" : "Regular") + " Customer " + customerName +" bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + ticketPool.size());
-        System.out.println((isVip ? "VIP" : "Regular") + " Customer " + customerName +" bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + ticketPool.size());
-
-        notifyAll();  // Notify vendors that space is available
+        // Notify all waiting threads that tickets may now be available
+        notifyAll();
         return true;
     }
 

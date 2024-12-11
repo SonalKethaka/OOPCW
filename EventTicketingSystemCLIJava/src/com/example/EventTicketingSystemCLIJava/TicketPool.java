@@ -1,12 +1,6 @@
-package com.example.EventTicketingSystemCLI;
+package com.example.EventTicketingSystemCLIJava;
 
-import org.springframework.boot.logging.java.SimpleFormatter;
-import java.io.File;
-import java.util.Collections;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
+
 
 public class TicketPool {
 
@@ -39,33 +33,6 @@ public class TicketPool {
     }
 
     public synchronized boolean removeTicket(int ticketsToRetrieve, String customerName) {
-////        while (ticketPool < ticketsToRetrieve) {
-////            try {
-////                wait();
-////            } catch (InterruptedException e) {
-////                Thread.currentThread().interrupt();
-////                return false;
-////            }
-////        }
-//        while (ticketPool == 0) {
-//            try {
-//                wait();
-//            } catch (InterruptedException e) {
-//                Thread.currentThread().interrupt();
-//                return false;
-//            }
-//        }
-//        if (ticketPool < ticketsToRetrieve ){
-//            System.out.println("Customer " + customerName +" bought " + ticketPool + " ticket(s). Tickets left in pool: " + 0);
-//            ticketPool -= ticketPool;
-//        }else {
-//            ticketPool -= ticketsToRetrieve;
-//            System.out.println("Customer " + customerName +" bought " + ticketsToRetrieve + " ticket(s). Tickets left in pool: " + ticketPool);
-//        }
-//
-//        notifyAll();  // Notify vendors that space is available
-//        return true;
-        // Wait if there are no tickets available
         while (ticketPool == 0) {
             try {
                 System.out.println("Waiting for tickets to become available...");
