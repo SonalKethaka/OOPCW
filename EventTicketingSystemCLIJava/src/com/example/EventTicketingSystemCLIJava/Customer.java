@@ -6,15 +6,11 @@ public class Customer implements Runnable {
     private final int customerRetrievalRate;
     private final String customerName;
 
-
-
     public Customer(com.example.EventTicketingSystemCLIJava.TicketPool ticketPool, int customerRetrievalRate, String customerName) {
         this.ticketPool = ticketPool;
         this.customerRetrievalRate = customerRetrievalRate;
-
         this.customerName = customerName;
     }
-
 
     @Override
     public void run() {

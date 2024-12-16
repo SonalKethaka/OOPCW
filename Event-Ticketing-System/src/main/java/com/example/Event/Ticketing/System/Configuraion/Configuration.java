@@ -53,4 +53,5 @@ public class Configuration {
     public void setMaxTicketCapacity(int maxTicketCapacity) {
         this.maxTicketCapacity = maxTicketCapacity;
     }
+
 }

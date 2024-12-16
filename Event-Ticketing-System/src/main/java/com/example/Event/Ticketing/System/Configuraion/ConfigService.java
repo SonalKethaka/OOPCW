@@ -39,16 +39,4 @@ public class ConfigService {
             writer.newLine();
         }
     }
-
-    // Method to load configuration from a plain text file
-    public static Configuration loadConfigurationFromText() throws IOException {
-        Configuration config = new Configuration();
-        try (BufferedReader reader = new BufferedReader(new FileReader(TEXT_FILE_PATH))) {
-            config.setTotalTickets(Integer.parseInt(reader.readLine().split(": ")[1]));
-            config.setTicketReleaseRate(Integer.parseInt(reader.readLine().split(": ")[1]));
-            config.setCustomerRetrievalRate(Integer.parseInt(reader.readLine().split(": ")[1]));
-            config.setMaxTicketCapacity(Integer.parseInt(reader.readLine().split(": ")[1]));
-        }
-        return config;
-    }
 }

@@ -1,10 +1,7 @@
 package com.example.Event.Ticketing.System;
 
 
-import com.example.Event.Ticketing.System.Unsure.TicketService;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-
-import java.util.Random;
 
 public class Vendor implements Runnable {
 

@@ -4,7 +4,6 @@ package com.example.Event.Ticketing.System;
 
 import com.example.Event.Ticketing.System.Configuraion.ConfigService;
 import com.example.Event.Ticketing.System.Configuraion.Configuration;
-import com.example.Event.Ticketing.System.Unsure.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,27 +30,6 @@ public class TicketController {
         this.configService = configService;
     }
 
-//    @PostMapping("/add")
-//    public void addTickets(@RequestParam int tickets) {//Method Not NECESSARY
-//        ticketPool.addTickets(tickets);
-//    }
-
-//    @PostMapping("/purchase")
-//    public String purchaseTicket() {//Method Not NECESSARY
-//        try {
-//            ticketPool.removeTicket();
-//            return "Ticket purchased successfully!";
-//        } catch (InterruptedException e) {
-//            return "Error: " + e.getMessage();
-//        }
-//    }
-
-//    @PostMapping("/start")
-//    public ResponseEntity<String> startSystem() {
-//        systemRunning = true;
-//        return ResponseEntity.ok("System started");
-//    }
-
     @PostMapping("/start")
     public ResponseEntity<String> startSystem() throws IOException {
         try {
@@ -62,7 +40,6 @@ public class TicketController {
             return ResponseEntity.status(500).body("Failed to start the system: " + e.getMessage());
         }
     }
-
 
     @PostMapping("/stop")
     public ResponseEntity<String> stopSystem() {
@@ -76,12 +53,11 @@ public class TicketController {
         }
     }
 
-        // Add endpoint to get system status
+
     @GetMapping("/status")
     public ResponseEntity<Map<String, String>> getSystemStatus () {
         Map<String, String> response = new HashMap<>();
         response.put("status", systemRunning ? "Running" : "Stopped");
-//        return ResponseEntity.ok().body(response);
         return ResponseEntity.ok(response);
     }
 
@@ -97,7 +73,6 @@ public class TicketController {
     }
 
 
-    // Adjust the number of regular customers
     @PostMapping("/configure/regularCustomers")
     public ResponseEntity<Map<String, String>> adjustRegularCustomers(@RequestParam int numCustomers) {
         try {
@@ -114,7 +89,6 @@ public class TicketController {
         }
     }
 
-    // Adjust the number of VIP customers
     @PostMapping("/configure/vipCustomers")
     public ResponseEntity<String> adjustVipCustomers(@RequestParam int numCustomers) {
         try {
@@ -125,7 +99,6 @@ public class TicketController {
         }
     }
 
-    // Adjust the number of Vendors
     @PostMapping("/configure/vendors")
     public ResponseEntity<String> adjustVendors(@RequestParam int numVendors) {
         try {
@@ -136,7 +109,6 @@ public class TicketController {
         }
     }
 
-    // Endpoint to get the current number of regular and VIP customers
     @GetMapping("/customers")
     public ResponseEntity<Map<String, Integer>> getCustomerCounts() {
         Map<String, Integer> customerCounts = new HashMap<>();

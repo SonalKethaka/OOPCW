@@ -10,7 +10,6 @@ public class Vendor implements Runnable {
     public Vendor(TicketPool ticketPool, int ticketReleaseRate,  String vendorName) {
         this.ticketPool = ticketPool;
         this.ticketReleaseRate = ticketReleaseRate;
-
         this.vendorName = vendorName;
     }
 

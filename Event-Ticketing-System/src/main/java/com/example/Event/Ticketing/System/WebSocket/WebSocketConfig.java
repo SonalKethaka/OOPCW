@@ -1,4 +1,4 @@
-package com.example.Event.Ticketing.System.Unsure;
+package com.example.Event.Ticketing.System.WebSocket;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

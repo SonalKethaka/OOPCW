@@ -1,6 +1,5 @@
 package com.example.Event.Ticketing.System;
 
-import com.example.Event.Ticketing.System.Unsure.TicketService;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 public class Customer implements Runnable, Comparable<Customer> {
@@ -9,9 +8,8 @@ public class Customer implements Runnable, Comparable<Customer> {
     private final int customerRetrievalRate;
     private final SimpMessagingTemplate messagingTemplate;
     private final String customerName;
-
-    private final boolean isVip; // Flag to distinguish VIP customers
-    private final int priority;  // Priority for VIP customers
+    private final boolean isVip;
+    private final int priority;
 
 
 
@@ -19,9 +17,7 @@ public class Customer implements Runnable, Comparable<Customer> {
         this.ticketPool = ticketPool;
         this.customerRetrievalRate = customerRetrievalRate;
         this.messagingTemplate = messagingTemplate;
-
         this.customerName = customerName;
-
         this.isVip = isVip;
         this.priority = isVip ? 1 : 2;  // VIP customers have higher priority (1)
     }

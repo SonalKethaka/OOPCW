@@ -19,17 +19,17 @@ export class CustomerVendorControlComponent {
   constructor(private customerVendorService: CustomerVendorControlService) { }
 
   ngOnInit(): void {
-    this.getCustomerCounts(); // Get current customer counts when the component is initialized
-    this.getVendorCounts();// Get current vendor counts when the component is initialized
+    this.getCustomerCounts(); 
+    this.getVendorCounts();
   }
 
-  // Increment regular customers count
+  
   incrementRegularCustomers() {
     this.regularCustomerCount++;
     this.adjustRegularCustomers();
   }
 
-  // Decrement regular customers count
+
   decrementRegularCustomers() {
     if (this.regularCustomerCount > 0) {
       this.regularCustomerCount--;

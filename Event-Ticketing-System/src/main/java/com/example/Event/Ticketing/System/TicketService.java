@@ -1,4 +1,4 @@
-package com.example.Event.Ticketing.System.Unsure;
+package com.example.Event.Ticketing.System;
 
 
 import com.example.Event.Ticketing.System.*;
@@ -59,17 +59,7 @@ public class TicketService {
 //            Thread.sleep(1000);
         }
 
-//        for (int i = 0; i < 5; i++) {  // Create 5 customer threads
-//            String num = String.valueOf(i+1);
-//
-//            Thread customerThread = new Thread(new Customer(ticketPool, customerRetrievalRate, messagingTemplate, num));
-//
-//
-//            customers.add(customerThread);
-//            customerThread.start();
-////            Thread.sleep(1000);
-//
-//        }   //CHATGPTTTTTTTTTTTTTTTTT
+
         for (int i = 0; i < totalCustomers; i++) {
             String num = String.valueOf(i + 1);
             Customer customer = new Customer(ticketPool, customerRetrievalRate, messagingTemplate, num, false); // Regular customer
@@ -87,24 +77,6 @@ public class TicketService {
             customers.add(vipCustomerThread);
             vipCustomerThread.start();
         }
-
-
-//         Wait for all vendor and customer threads to finish
-//        for (Thread vendor : vendors) {  //Gehiru
-//            try {
-//                vendor.join();
-//            } catch (InterruptedException e) {
-//                Thread.currentThread().interrupt();
-//            }
-//        }
-//
-//        for (Thread customer : customers) {
-//            try {
-//                customer.join();
-//            } catch (InterruptedException e) {
-//                Thread.currentThread().interrupt();
-//            }
-//        }
 
         System.out.println("Ticket sales completed.");
     }
@@ -131,7 +103,6 @@ public class TicketService {
         vendors.clear();
         customers.clear();
 
-          // Mark system as stopped
     }
 
     public synchronized boolean isSystemRunning() {

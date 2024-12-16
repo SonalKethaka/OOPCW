@@ -20,7 +20,7 @@ public class TicketPoolConfig {
 
     @Bean
     public TicketPool ticketPool() throws IOException {
-        int maxTicketCapacity = 0;  // Set the desired max ticket capacity
+        int maxTicketCapacity = 0;
         int totalTickets =0;
         return new TicketPool( maxTicketCapacity, totalTickets, messagingTemplate , ticketRepository);
     }

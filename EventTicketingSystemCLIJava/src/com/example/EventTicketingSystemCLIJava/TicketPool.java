@@ -1,7 +1,5 @@
 package com.example.EventTicketingSystemCLIJava;
 
-
-
 public class TicketPool {
 
     private final int maxCapacity;
@@ -11,12 +9,11 @@ public class TicketPool {
     public TicketPool(int maxCapacity, int totalTickets) {
         this.maxCapacity = maxCapacity;
         this.ticketsLeft = totalTickets;
-//        this.currentTicketsInPool = 0;
         this.ticketPool = 0;
     }
 
     public synchronized boolean addTickets(int ticketsToAdd, String vendorName) {
-        if (ticketsLeft <= 0 || ticketPool >= maxCapacity) {  //nimeshhhhhhhhhhhhhhhhh
+        if (ticketsLeft <= 0 || ticketPool >= maxCapacity) {
             return false;
         }
 
@@ -46,14 +43,11 @@ public class TicketPool {
         // Adjust the number of tickets to retrieve based on availability
         int ticketsToRemove = Math.min(ticketsToRetrieve, ticketPool);
 
-        // Update the pool by removing the tickets
         ticketPool -= ticketsToRemove;
 
-        // Log the transaction
         System.out.println("Customer " + customerName + " bought " + ticketsToRemove + " ticket(s). Tickets left in pool: " + ticketPool);
 
-        // Notify all waiting threads that space is now available in the pool
-        notifyAll();
+        notifyAll(); // Notify all waiting threads that space is now available in the pool
         return true;
     }
 

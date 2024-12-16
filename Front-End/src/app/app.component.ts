@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
-// import { ConfigurationFormComponent } from "./configuration-form/configuration-form.component";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ConfigurationFormComponent } from "./configuration-form/configuration-form.component";
@@ -8,7 +7,6 @@ import { SystemControlComponent } from "./system-control/system-control.componen
 import { HeaderControlComponentComponent } from './header-control-component/header-control-component.component';
 import { CustomerVendorControlComponent } from './customer-vendor-control/customer-vendor-control.component';
 
-// import { ConfigurationFormComponent } from "./configuration-form/configuration-form.component";
 
 
 

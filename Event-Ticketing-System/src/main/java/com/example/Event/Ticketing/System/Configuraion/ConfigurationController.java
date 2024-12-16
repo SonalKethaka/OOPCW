@@ -12,12 +12,6 @@ import java.io.IOException;
 @RequestMapping("/api/configuration")
 public class ConfigurationController {
 
-
-//    @GetMapping
-//    public Configuration loadConfig() throws IOException {
-//        return ConfigurationManager.loadConfigurationFromJson();
-//    }
-
     private final ConfigService configService;
 
     @Autowired
